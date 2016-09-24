@@ -3,9 +3,8 @@
 #### Event handling system for noortemaja.
 
 This site is made in python for educational purpouses. The site is hosted in pythoneverywhere.com.
+To refresh the site use pareload in pythoneverywhere console.
 
-
-* To refresh the site use pareload in pythoneverywhere console.
 ###How To Use pareload
 
 ```
