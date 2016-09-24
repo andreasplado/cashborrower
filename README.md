@@ -1,4 +1,5 @@
-# klmn
+# noortemaja
+
 Events handling system made in python web framework called DJANGO
 #### Event handling system for noortemaja.
 
