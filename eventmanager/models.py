@@ -19,3 +19,8 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment
 
+class EventLike(models.Model):
+    event = models.ForeignKey(Event)
+
+class CommentLike(models.Model):
+    comment = models.ForeignKey(Comment)
