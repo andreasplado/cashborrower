@@ -13,3 +13,9 @@ class Event(models.Model):
     def __str__(self):
         return self.eventName
 
+class Comment(models.Model):
+    event = models.ForeignKey(Event)
+    comment = models.CharField(max_length=100)
+    def __str__(self):
+        return self.comment
+
