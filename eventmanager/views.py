@@ -5,18 +5,30 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Event, Comment, EventLike, CommentLike
 from .serializers import EventSerializer, CommentSerializer, EventLikeSerializer, CommentLikeSerializer
+from rest_framework.settings import api_settings
+from rest_framework import generics
+from rest_framework.pagination import(
+    LimitOffsetPagination,
+    PageNumberPagination
+)
+
 
 # Create your views here.
 
-# List all events or create a new one
-# events/
-class EventList(APIView):
-    def get(self, request):
-        events =Event.objects.all()
-        serializer = EventSerializer(events, many=True)
-        return Response(serializer.data)
-    def post(self):
-        pass
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+
+# to use pagingnation you must use generics!!!!! iEg i use ListCreateAPIView
+class EventList(generics.ListCreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    pagination_class = StandardResultsSetPagination
+    
+
+
 
 class CommentList(APIView):
     def get(self, request, *args, **kwargs):
