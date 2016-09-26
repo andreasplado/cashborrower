@@ -23,7 +23,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 # to use pagingnation you must use generics!!!!! iEg i use ListCreateAPIView
 class EventList(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by('-id')
     serializer_class = EventSerializer
     pagination_class = StandardResultsSetPagination
     
