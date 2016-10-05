@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from eventmanager import views
+from django.conf.urls import include, url
 
 
 admin.autodiscover()
@@ -26,4 +27,5 @@ urlpatterns = [
     url(r'^event/(?P<pk>[0-9]+)/comments', views.CommentList.as_view()),
     url(r'^event/(?P<pk>[0-9]+)/likes', views.EventLikeList.as_view()),
     url(r'^comment/(?P<pk>[0-9]+)/likes', views.CommentLikeList.as_view()),
+    url(r'^gcm/(?P<registration_id>[0-9]+)/(?P<info>[0-9]+[a-z])', views.CommentLikeList.as_view()),
 ]

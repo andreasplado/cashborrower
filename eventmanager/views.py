@@ -11,14 +11,14 @@ from rest_framework.pagination import(
     LimitOffsetPagination,
     PageNumberPagination
 )
-
-
 # Create your views here.
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 10
+    #change the page size. (How many data models from database it loads per one page)
+    page_size = 10 
     page_size_query_param = 'page_size'
     max_page_size = 1000
+    
 
 
 # to use pagingnation you must use generics!!!!! iEg i use ListCreateAPIView
@@ -27,17 +27,15 @@ class EventList(generics.ListCreateAPIView):
     serializer_class = EventSerializer
     pagination_class = StandardResultsSetPagination
     
+    
 
-
-
-class CommentList(APIView):
-    def get(self, request, *args, **kwargs):
+class CommentList(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+    pagination_class = StandardResultsSetPagination
+    def get_queryset(self):
         key = self.kwargs['pk']
-        comments = Comment.objects.filter(pk=key)
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
-    def post(self):
-        pass
+        queryset = Comment.objects.filter(event=key)
+        return queryset
 
 class EventLikeList(APIView):
     def get(self, request, *args, **kwargs):
@@ -55,5 +53,16 @@ class CommentLikeList(APIView):
         commentLikes = CommentLike.objects.filter(pk=key)
         serializer = CommentLikeSerializer(commentLikes, many=True)
         return Response(serializer.data)
+    def post(self):
+        pass
+
+class GoogleCloudMessaging(APIView):
+    def get(self, request, *args, **kwargs):
+        #data = self.kwargs[
+        #    'registration_id',
+        #    'info'
+        #    ]
+        #gcm_send_bulk_message(data[0], data[1] )
+        pass
     def post(self):
         pass

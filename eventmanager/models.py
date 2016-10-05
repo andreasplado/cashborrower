@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from datetime import datetime
+
 
 # Create your models here.
 
@@ -10,6 +12,7 @@ class Event(models.Model):
     place = models.CharField(max_length=100)
     start = models.DateTimeField()
     end = models.DateTimeField()
+
     def __str__(self):
         return self.eventName
 
@@ -24,3 +27,5 @@ class EventLike(models.Model):
 
 class CommentLike(models.Model):
     comment = models.ForeignKey(Comment)
+
+
