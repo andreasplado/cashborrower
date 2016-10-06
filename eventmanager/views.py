@@ -26,6 +26,12 @@ class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all().order_by('-id')
     serializer_class = EventSerializer
     pagination_class = StandardResultsSetPagination
+    def post(self, request, format=None):
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
 
