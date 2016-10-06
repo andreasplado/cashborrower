@@ -27,7 +27,7 @@ class LoanList(generics.ListCreateAPIView):
     serializer_class = LoanSerializer
     pagination_class = StandardResultsSetPagination
     def post(self, request, format=None):
-        serializer = EventSerializer(data=request.data)
+        serializer = LoanSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
