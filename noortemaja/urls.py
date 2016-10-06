@@ -23,9 +23,9 @@ from django.conf.urls import include, url
 admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^events/', views.EventList.as_view()),
-    url(r'^event/(?P<pk>[0-9]+)/comments', views.CommentList.as_view()),
-    url(r'^event/(?P<pk>[0-9]+)/likes', views.EventLikeList.as_view()),
+    url(r'^loans/', views.LoanList.as_view()),
+    url(r'^loan/(?P<pk>[0-9]+)/comments', views.CommentList.as_view()),
+    url(r'^loan/(?P<pk>[0-9]+)/credit', views.LoanCreditList.as_view()),
+    url(r'^loan/(?P<pk>[0-9]+)/discredit', views.LoanDiscreditList.as_view()),
     url(r'^comment/(?P<pk>[0-9]+)/likes', views.CommentLikeList.as_view()),
-    url(r'^gcm/(?P<registration_id>[0-9]+)/(?P<info>[0-9]+[a-z])', views.CommentLikeList.as_view()),
 ]

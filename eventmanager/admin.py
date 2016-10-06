@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import Event, Comment, EventLike, CommentLike
-
+from .models import Loan, LoanCredit, Comment, CommentLike
 # Register your models here.
 
-admin.site.register(Event)
+admin.site.register(Loan)
+admin.site.register(LoanCredit)
 admin.site.register(Comment)
-admin.site.register(EventLike)
 admin.site.register(CommentLike)

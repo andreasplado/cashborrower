@@ -6,26 +6,27 @@ from datetime import datetime
 
 # Create your models here.
 
-class Event(models.Model):
-    eventName = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
-    place = models.CharField(max_length=100)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
+class Loan(models.Model):
+    lender = models.CharField(max_length=100)
+    loaner = models.CharField(max_length=100)
+    interest = models.CharField(max_length=100)
+    deadline = models.DateTimeField()
 
     def __str__(self):
-        return self.eventName
+        return self.loaner
 
 class Comment(models.Model):
-    event = models.ForeignKey(Event)
+    loan = models.ForeignKey(Loan)
     comment = models.CharField(max_length=100)
     def __str__(self):
         return self.comment
 
-class EventLike(models.Model):
-    event = models.ForeignKey(Event)
+class LoanCredit(models.Model):
+    loanCredit = models.ForeignKey(Loan)
+    credit = models.BooleanField(default=False)
 
 class CommentLike(models.Model):
-    comment = models.ForeignKey(Comment)
+    commentLike = models.ForeignKey(Comment)
+    like = models.BooleanField(default=False)
 
 
