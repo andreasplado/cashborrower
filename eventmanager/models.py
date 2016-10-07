@@ -9,6 +9,7 @@ from datetime import datetime
 class Loan(models.Model):
     lender = models.CharField(max_length=100)
     loaner = models.CharField(max_length=100)
+    sum = models.CharField(max_length=9)
     interest = models.CharField(max_length=100)
     deadline = models.DateTimeField()
 
@@ -22,7 +23,7 @@ class Comment(models.Model):
         return self.comment
 
 class LoanCredit(models.Model):
-    loanCredit = models.ForeignKey(Loan)
+    loan = models.ForeignKey(Loan)
     credit = models.BooleanField(default=False)
 
 class CommentLike(models.Model):

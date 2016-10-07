@@ -49,7 +49,8 @@ class LoanCreditList(APIView):
         key = self.kwargs['pk']
         loanCredits = LoanCredit.objects.filter(credit=True).filter(loanCredit=key).count()
         return Response(loanCredits)
-    def post(self, request, format=None):
+    def post(self, request, *args, **kwargs):
+        #print(request.data)
         serializer = LoanCreditSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -64,9 +65,11 @@ class LoanDiscreditList(APIView):
         key = self.kwargs['pk']
         loanCredits = LoanCredit.objects.filter(credit=False).filter(loanCredit=key).count()
         return Response(loanCredits)
-    def post(self, request, pk):
+    def post(self, request, *args, **kwargs):
+        print(request.data)
         serializer = LoanCreditSerializer(data=request.data)
         if serializer.is_valid():
+            key = self.kwargs['pk']
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -82,7 +85,7 @@ class CommentLikeList(APIView):
         key = self.kwargs['pk']
         commentLikes = CommentLike.objects.filter(pk=key).count()
         return Response(commentLikes)
-    def post(self, request, format=None):
+    def post(self, request, *args, **kwargs):
         serializer = CommentLikeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
