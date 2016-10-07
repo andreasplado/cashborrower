@@ -64,7 +64,7 @@ class LoanDiscreditList(APIView):
         key = self.kwargs['pk']
         loanCredits = LoanCredit.objects.filter(credit=False).filter(loanCredit=key).count()
         return Response(loanCredits)
-    def post(self, request, format=None):
+    def post(self, request, pk):
         serializer = LoanCreditSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
