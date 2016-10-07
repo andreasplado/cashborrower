@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^loans/', views.LoanList.as_view()),
     url(r'^loan/(?P<pk>[0-9]+)/comments', views.CommentList.as_view()),
-    url(r'^loan/(?P<pk>[0-9]+)/credit', views.LoanCreditList.as_view()),
-    url(r'^loan/(?P<pk>[0-9]+)/discredit', views.LoanDiscreditList.as_view()),
+    url(r'^loan/(?P<pk>[0-9]+)/credits', views.LoanCreditNum.as_view()),
+    url(r'^loan/(?P<pk>[0-9]+)/discredits', views.LoanDiscreditNum.as_view()),
     url(r'^comment/(?P<pk>[0-9]+)/likes', views.CommentLikeList.as_view()),
 ]

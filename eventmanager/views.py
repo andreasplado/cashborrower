@@ -44,10 +44,10 @@ class CommentList(generics.ListCreateAPIView):
         return queryset
 
 #credit  must return full json because it counts all data
-class LoanCreditList(APIView):
+class LoanCreditNum(APIView):
     def get(self, request, *args, **kwargs):
         key = self.kwargs['pk']
-        loanCredits = LoanCredit.objects.filter(credit=True).filter(loanCredit=key).count()
+        loanCredits = LoanCredit.objects.filter(credit=True).filter(loan_id=key).count()
         return Response(loanCredits)
     def post(self, request, *args, **kwargs):
         #print(request.data)
@@ -59,11 +59,10 @@ class LoanCreditList(APIView):
 
 
 #downvotef for the loaner
-#credit  must return full json because it counts all data
-class LoanDiscreditList(APIView):
+class LoanDiscreditNum(APIView):
     def get(self, request, *args, **kwargs):
         key = self.kwargs['pk']
-        loanCredits = LoanCredit.objects.filter(credit=False).filter(loanCredit=key).count()
+        loanCredits = LoanCredit.objects.filter(credit=False).filter(loan_id=key).count()
         return Response(loanCredits)
     def post(self, request, *args, **kwargs):
         print(request.data)
