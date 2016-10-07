@@ -8,13 +8,13 @@ from datetime import datetime
 
 class Loan(models.Model):
     lender = models.CharField(max_length=100)
-    loaner = models.CharField(max_length=100)
+    borrower = models.CharField(max_length=100)
     sum = models.CharField(max_length=9)
-    interest = models.CharField(max_length=100)
+    notes = models.CharField(max_length=255)
     deadline = models.DateTimeField()
 
     def __str__(self):
-        return self.loaner
+        return self.lender
 
 class Comment(models.Model):
     loan = models.ForeignKey(Loan)
