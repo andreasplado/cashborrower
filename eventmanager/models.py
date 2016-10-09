@@ -9,9 +9,13 @@ from datetime import datetime
 class Loan(models.Model):
     lender = models.CharField(max_length=100)
     borrower = models.CharField(max_length=100)
-    sum = models.CharField(max_length=9)
+    amount = models.CharField(max_length=9)
     notes = models.CharField(max_length=255)
     deadline = models.DateTimeField()
+    creditcount = models.IntegerField(default=0)
+    discreditcount = models.IntegerField(default=0)
+    
+
 
     def __str__(self):
         return self.lender

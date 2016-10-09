@@ -18,14 +18,25 @@ from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from eventmanager import views
 from django.conf.urls import include, url
+from eventmanager.views import(
+   LoanDeleteAPIView,
+   LoanDetailAPIView,
+   LoanListView,
+   LoanUpdateAPIView ,
+)
 
 
 admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^loans/', views.LoanList.as_view()),
-    url(r'^loan/(?P<pk>[0-9]+)/comments', views.CommentList.as_view()),
-    url(r'^loan/(?P<pk>[0-9]+)/credits', views.LoanCreditNum.as_view()),
-    url(r'^loan/(?P<pk>[0-9]+)/discredits', views.LoanDiscreditNum.as_view()),
-    url(r'^comment/(?P<pk>[0-9]+)/likes', views.CommentLikeList.as_view()),
+
+    url(r'^loans/$', views.LoanListView.as_view()),
+    url(r'^loan/(?P<id>[0-9]+)', views.LoanDetailAPIView.as_view()),
+    url(r'^loan/(?P<id>[0-9]+)/edit/', views.LoanUpdateAPIView.as_view()),
+    url(r'^loan/delete/(?P<id>[0-9]+)', views.LoanDeleteAPIView.as_view()),
+
+    url(r'^loancomments/loan/(?P<loan_fk>[0-9]+)', views.CommentListView.as_view()),
+    url(r'^loancomment/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDetailAPIView.as_view()),
+    url(r'^loancomment/update/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentUpdateAPIView.as_view()),
+    url(r'^loancomment/delete/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDeleteAPIView.as_view()),
 ]

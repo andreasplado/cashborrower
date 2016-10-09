@@ -11,39 +11,92 @@ from rest_framework.pagination import(
     LimitOffsetPagination,
     PageNumberPagination
 )
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    DestroyAPIView,
+    UpdateAPIView
+)
+from rest_framework import generics, permissions
 # Create your views here.
+# To use pagination you must use generics
 
+# Pagination
 class StandardResultsSetPagination(PageNumberPagination):
-    #change the page size. (How many data models from database it loads per one page)
     page_size = 10 
     page_size_query_param = 'page_size'
     max_page_size = 1000
-    
 
-
-# to use pagingnation you must use generics!!!!! iEg i use ListCreateAPIView
-class LoanList(generics.ListCreateAPIView):
+###########
+## Loans ##
+###########
+class LoanListView(generics.ListCreateAPIView):
     queryset = Loan.objects.all().order_by('-id')
     serializer_class = LoanSerializer
     pagination_class = StandardResultsSetPagination
-    def post(self, request, format=None):
-        serializer = LoanSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    
 
-class CommentList(generics.ListCreateAPIView):
+
+class LoanDetailAPIView(generics.RetrieveAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
+    lookup_field = 'id'
+
+
+class LoanUpdateAPIView(generics.UpdateAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
+    lookup_field = 'id'
+
+class LoanDeleteAPIView(generics.DestroyAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
+    lookup_field = 'id'
+
+
+###################
+## Loan Comments ##
+###################
+
+class CommentListView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     pagination_class = StandardResultsSetPagination
     def get_queryset(self):
-        key = self.kwargs['pk']
-        queryset = Comment.objects.filter(loan=key) #Notice thar if you change loan =key idk what happens.
-        return queryset
+        loan_fk = self.kwargs['loan_fk']
+        return Comment.objects.filter(loan=loan_fk)
 
-#credit  must return full json because it counts all data
+class CommentDetailAPIView(generics.RetrieveAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        loan_fk = self.kwargs['loan_fk']
+        return Comment.objects.filter(loan=loan_fk)
+
+class CommentUpdateAPIView(generics.UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        id = self.kwargs['id']
+        loan_fk = self.kwargs['loan_fk']
+        return Comment.objects.filter(id=id).filter(loan=loan_fk)
+
+class CommentDeleteAPIView(generics.DestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        id = self.kwargs['id']
+        loan_fk = self.kwargs['loan_fk']
+        return Comment.objects.filter(id=id).filter(loan=loan_fk)
+
+
+'''class CommentView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all().order_by('-id')
+    serializer_class = CommentSerializer
+    pagination_class = StandardResultsSetPagination
+
+
 class LoanCreditNum(APIView):
     def get(self, request, *args, **kwargs):
         key = self.kwargs['pk']
@@ -60,6 +113,7 @@ class LoanCreditNum(APIView):
 
 #downvotef for the loaner
 class LoanDiscreditNum(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         key = self.kwargs['pk']
         loanCredits = LoanCredit.objects.filter(credit=False).filter(loan_id=key).count()
@@ -90,3 +144,4 @@ class CommentLikeList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+'''
