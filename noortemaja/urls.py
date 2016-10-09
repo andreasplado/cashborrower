@@ -32,7 +32,7 @@ urlpatterns = [
 
     url(r'^loans/$', views.LoanListView.as_view()),
     url(r'^loan/(?P<id>[0-9]+)', views.LoanDetailAPIView.as_view()),
-    url(r'^loan/update/(?P<id>[0-9]+)/', views.LoanUpdateAPIView.as_view()),
+    url(r'^loan/update/(?P<id>[0-9]+)', views.LoanUpdateAPIView.as_view()),
     url(r'^loan/delete/(?P<id>[0-9]+)', views.LoanDeleteAPIView.as_view()),
 
     url(r'^loancredits/loan/(?P<loan_fk>[0-9]+)', views.LoanCreditListView.as_view()),
