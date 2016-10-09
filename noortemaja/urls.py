@@ -35,6 +35,12 @@ urlpatterns = [
     url(r'^loan/update/(?P<id>[0-9]+)/', views.LoanUpdateAPIView.as_view()),
     url(r'^loan/delete/(?P<id>[0-9]+)', views.LoanDeleteAPIView.as_view()),
 
+    url(r'^loancredits/loan/(?P<loan_fk>[0-9]+)', views.LoanCreditListView.as_view()),
+    url(r'^loandiscredits/loan/(?P<loan_fk>[0-9]+)', views.LoanDiscreditListView.as_view()),
+    url(r'^loancredits/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)', views.LoanCreditDetailAPIView.as_view()),
+    url(r'^loancredits/update/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)', views.LoanCreditUpdateAPIView.as_view()),
+    url(r'^loancredits/delete/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)', views.LoanCreditDeleteAPIView.as_view()),
+
     url(r'^loancomments/loan/(?P<loan_fk>[0-9]+)', views.CommentListView.as_view()),
     url(r'^loancomment/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDetailAPIView.as_view()),
     url(r'^loancomment/update/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentUpdateAPIView.as_view()),

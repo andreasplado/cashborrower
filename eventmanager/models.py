@@ -14,6 +14,7 @@ class Loan(models.Model):
     deadline = models.DateTimeField(blank=True, null=True)
     creditcount = models.IntegerField(default=0)
     discreditcount = models.IntegerField(default=0)
+    isUserVoted = models.BooleanField(default=False)
     
 
 

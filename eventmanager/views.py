@@ -90,6 +90,50 @@ class CommentDeleteAPIView(generics.DestroyAPIView):
         loan_fk = self.kwargs['loan_fk']
         return Comment.objects.filter(id=id).filter(loan=loan_fk)
 
+###################
+## Loan Credits ##
+###################
+
+class LoanCreditListView(generics.ListCreateAPIView):
+    serializer_class = LoanCreditSerializer
+    pagination_class = StandardResultsSetPagination
+    def get_queryset(self):
+        loan_fk = self.kwargs['loan_fk']
+        return LoanCredit.objects.filter(loan=loan_fk).filter(credit=True)
+
+class LoanDiscreditListView(generics.ListCreateAPIView):
+    serializer_class = LoanCreditSerializer
+    pagination_class = StandardResultsSetPagination
+    def get_queryset(self):
+        loan_fk = self.kwargs['loan_fk']
+        return LoanCredit.objects.filter(loan=loan_fk).filter(credit=False)
+
+class LoanCreditDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = CommentSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        loan_fk = self.kwargs['loan_fk']
+        return LoanCredit.objects.filter(loan=loan_fk)
+
+class LoanCreditUpdateAPIView(generics.UpdateAPIView):
+    queryset = LoanCredit.objects.all()
+    serializer_class = LoanCreditSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        id = self.kwargs['id']
+        loan_fk = self.kwargs['loan_fk']
+        return LoanCredit.objects.filter(id=id).filter(loan=loan_fk)
+
+class LoanCreditDeleteAPIView(generics.DestroyAPIView):
+    queryset = LoanCredit.objects.all()
+    serializer_class = LoanCreditSerializer
+    lookup_field = 'id'
+    def get_queryset(self):
+        id = self.kwargs['id']
+        loan_fk = self.kwargs['loan_fk']
+        return LoanCredit.objects.filter(id=id).filter(loan=loan_fk)
+
+
 
 '''class CommentView(generics.ListCreateAPIView):
     queryset = Comment.objects.all().order_by('-id')
