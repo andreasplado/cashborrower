@@ -16,9 +16,8 @@ Main classes:
 
 First make Make data serializer
 
-
-class CommentSerializer(serializers.ModelSerializer):
 ```
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         #fields =('comment')
@@ -35,7 +34,7 @@ class CommentListView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     pagination_class = StandardResultsSetPagination
     def get_queryset(self):
-        loan_fk = self.kwargs['loan_fk']
+        post_fk = self.kwargs['post_fk']
         return Comment.objects.filter(loan=loan_fk)
 
 Then path to url-s with foreign key.
