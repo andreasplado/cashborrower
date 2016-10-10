@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Loan, LoanCredit, Comment, CommentLike
-from .serializers import LoanSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer
+from .models import Loan, LoanCredit, Comment, CommentLike, Log
+from .serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -51,6 +51,33 @@ class LoanDeleteAPIView(generics.DestroyAPIView):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     lookup_field = 'id'
+
+
+###########
+## Logs ##
+###########
+class LogListView(generics.ListCreateAPIView):
+    queryset = Log.objects.all().order_by('-id')
+    serializer_class = LogSerializer
+    pagination_class = StandardResultsSetPagination
+
+
+class LogDetailAPIView(generics.RetrieveAPIView):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+    lookup_field = 'id'
+
+
+class LogUpdateAPIView(generics.UpdateAPIView):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+    lookup_field = 'id'
+
+class LogDeleteAPIView(generics.DestroyAPIView):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+    lookup_field = 'id'
+
 
 
 ###################

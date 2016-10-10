@@ -41,6 +41,11 @@ urlpatterns = [
     url(r'^loancredits/update/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)', views.LoanCreditUpdateAPIView.as_view()),
     url(r'^loancredits/delete/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)', views.LoanCreditDeleteAPIView.as_view()),
 
+    url(r'^logs/$', views.LogListView.as_view()),
+    url(r'^log/(?P<id>[0-9]+)', views.LogDetailAPIView.as_view()),
+    url(r'^log/update/(?P<id>[0-9]+)', views.LogUpdateAPIView.as_view()),
+    url(r'^log/delete/(?P<id>[0-9]+)', views.LogDeleteAPIView.as_view()),
+
     url(r'^loancomments/loan/(?P<loan_fk>[0-9]+)', views.CommentListView.as_view()),
     url(r'^loancomment/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDetailAPIView.as_view()),
     url(r'^loancomment/update/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentUpdateAPIView.as_view()),

@@ -15,11 +15,11 @@ class Loan(models.Model):
     creditcount = models.IntegerField(default=0)
     discreditcount = models.IntegerField(default=0)
     isUserVoted = models.BooleanField(default=False)
-    
-
-
     def __str__(self):
         return self.lender
+
+class Log(models.Model):
+    logInfo = models.CharField(max_length=200) 
 
 class Comment(models.Model):
     loan = models.ForeignKey(Loan)

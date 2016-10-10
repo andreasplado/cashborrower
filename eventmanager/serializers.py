@@ -1,9 +1,15 @@
 from rest_framework import serializers
-from .models import Loan, LoanCredit, Comment, CommentLike
+from .models import Loan, LoanCredit, Comment, CommentLike, Log
 
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
+        #fields =('eventName')
+        fields = '__all__'
+
+class LogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Log
         #fields =('eventName')
         fields = '__all__'
 
