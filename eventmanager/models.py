@@ -19,6 +19,7 @@ class Loan(models.Model):
         return self.lender
 
 class Log(models.Model):
+    lender = models.CharField(max_length=100)
     logInfo = models.CharField(max_length=200) 
 
 class Comment(models.Model):
