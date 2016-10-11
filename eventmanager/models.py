@@ -15,6 +15,7 @@ class Loan(models.Model):
     creditcount = models.IntegerField(default=0)
     discreditcount = models.IntegerField(default=0)
     isUserVoted = models.BooleanField(default=False)
+    isPrivateLoan = models.BooleanField(default=True)
     def __str__(self):
         return self.lender
 
