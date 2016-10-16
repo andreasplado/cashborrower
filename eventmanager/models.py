@@ -21,7 +21,7 @@ class Loan(models.Model):
 
 class Log(models.Model):
     lender = models.CharField(max_length=100)
-    logInfo = models.CharField(max_length=200)
+    sum = models.IntegerField(default=0)
     isPrivate = models.BooleanField(default=True)
     isLoanReturned = models.BooleanField(default=False)
 
