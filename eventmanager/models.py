@@ -21,7 +21,9 @@ class Loan(models.Model):
 
 class Log(models.Model):
     lender = models.CharField(max_length=100)
-    logInfo = models.CharField(max_length=200) 
+    logInfo = models.CharField(max_length=200)
+    isPrivate = models.BooleanField(default=True)
+    isLoanReturned = models.BooleanField(default=False)
 
 class Comment(models.Model):
     loan = models.ForeignKey(Loan)
