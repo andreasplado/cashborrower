@@ -49,7 +49,7 @@ urlpatterns = [
     url(r'^lender/(?P<lender>[\w\-]+)/loan/delete/(?P<id>[0-9]+)', views.LenderLoanDeleteAPIView.as_view()),
 
     url(r'^lender/(?P<lender>[\w\-]+)/logs/', views.LenderLogListView.as_view()),
-    url(r'^lender/(?P<lender>[\w\-]+)/log/(?P<id>[0-9]+)', views.LenderLogDetailAPIView.as_view()),
+    url(r'^lender/(?P<lender>[\w\-]+)/log/(?P<id>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', views.LenderLogDetailAPIView.as_view()),
     url(r'^lender/(?P<lender>[\w\-]+)/log/update/(?P<id>[0-9]+)', views.LenderLogUpdateAPIView.as_view()),
     url(r'^lender/(?P<lender>[\w\-]+)/log/delete/(?P<id>[0-9]+)', views.LenderLogDeleteAPIView.as_view()),
 
