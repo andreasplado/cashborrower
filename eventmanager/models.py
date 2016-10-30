@@ -23,7 +23,7 @@ class Log(models.Model):
     lender = models.CharField(max_length=100)
     borrower = models.CharField(max_length=100)
     sum = models.IntegerField(default=0)
-    isPrivate = models.BooleanField(default=True)
+    isLoanLended = models.BooleanField(default=False)
     isLoanReturned = models.BooleanField(default=False)
 
 class Comment(models.Model):
