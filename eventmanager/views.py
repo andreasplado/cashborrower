@@ -57,13 +57,23 @@ class LoanDeleteAPIView(generics.DestroyAPIView):
 ##################
 ## Lender Loans ##
 ##################
-class LenderLoanListView(generics.ListCreateAPIView):
+class GivenLoanListView(generics.ListCreateAPIView):
     serializer_class = LoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         lender = self.kwargs['lender']
         return Loan.objects.filter(lender=lender).order_by('-id')
+
+
+class TakenLoanListView(generics.ListCreateAPIView):
+    serializer_class = LoanSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        borrower = self.kwargs['borrower']
+        return Loan.objects.filter(borrower=borrower).order_by('-id')
+
 
 
 class LenderLoanDetailAPIView(generics.RetrieveAPIView):
