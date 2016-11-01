@@ -26,6 +26,7 @@ from eventmanager.views import(
    LenderLoanDeleteAPIView,
    LenderLoanDetailAPIView,
    GivenLoanListView,
+   GivenLoanListViewSearchByEmail,
    TakenLoanListView,
    LenderLoanUpdateAPIView,
    LenderLogDeleteAPIView,
@@ -45,6 +46,7 @@ urlpatterns = [
     url(r'^loan/delete/(?P<id>[\w\-]+)', views.LoanDeleteAPIView.as_view()),
 
     url(r'^lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/givenloans/', views.GivenLoanListView.as_view()),
+    url(r'^lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/givenloansbyemail/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', views.GivenLoanListViewSearchByEmail.as_view()),
     url(r'^lender/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/takenloans/', views.TakenLoanListView.as_view()),
     url(r'^lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/(?P<id>[0-9]+)', views.LenderLoanDetailAPIView.as_view()),
     url(r'^lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/update/(?P<id>[0-9]+)', views.LenderLoanUpdateAPIView.as_view()),

@@ -65,6 +65,15 @@ class GivenLoanListView(generics.ListCreateAPIView):
         lender = self.kwargs['lender']
         return Loan.objects.filter(lender=lender).order_by('-id')
 
+class GivenLoanListViewSearchByEmail(generics.ListCreateAPIView):
+    serializer_class = LoanSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        borrower = self.kwargs['borrower']
+        lender = self.kwargs['lender']
+        return Loan.objects.filter(lender=lender).filter(borrower=borrower).order_by('-id')
+
 
 class TakenLoanListView(generics.ListCreateAPIView):
     serializer_class = LoanSerializer
