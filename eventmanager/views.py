@@ -102,6 +102,13 @@ class LenderLoanUpdateAPIView(generics.UpdateAPIView):
         lender = self.kwargs['lender']
         return Loan.objects.filter(lender=lender).order_by('-id')
 
+class PublicLoansUpdateAPIView(generics.UpdateAPIView):
+    serializer_class = LoanSerializer
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        return Loan.objects.order_by('-id')
+
 class LenderLoanDeleteAPIView(generics.DestroyAPIView):
     serializer_class = LoanSerializer
     lookup_field = 'id'
