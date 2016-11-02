@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Loan, LoanCredit, Comment, CommentLike, Log
-from .serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer
+from .models import Loan, LoanCredit, Comment, CommentLike, Log, LoanVote
+from .serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer, LoanVotesSerializer
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -28,30 +28,6 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 
-###############
-## All Loans ##
-###############
-class LoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.all().order_by('-id')
-    serializer_class = LoanSerializer
-    pagination_class = StandardResultsSetPagination
-
-
-class LoanDetailAPIView(generics.RetrieveAPIView):
-    queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
-    lookup_field = 'id'
-
-
-class LoanUpdateAPIView(generics.UpdateAPIView):
-    queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
-    lookup_field = 'id'
-
-class LoanDeleteAPIView(generics.DestroyAPIView):
-    queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
-    lookup_field = 'id'
 
 
 ##################
@@ -62,16 +38,16 @@ class GivenLoanListView(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Loan.objects.filter(lender=lender).order_by('-id')
+        lender_id = self.kwargs['lender_id']
+        return Loan.objects.filter(id=lender_id).order_by('-id')
 
 class GivenLoanListViewSearchByEmail(generics.ListCreateAPIView):
     serializer_class = LoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        borrower = self.kwargs['borrower']
-        lender = self.kwargs['lender']
+        borrower_id = self.kwargs['borrower_id']
+        lender_id = self.kwargs['lender_id']
         return Loan.objects.filter(lender=lender).filter(borrower=borrower).order_by('-id')
 
 
@@ -80,23 +56,23 @@ class TakenLoanListView(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        borrower = self.kwargs['borrower']
-        return Loan.objects.filter(borrower=borrower).order_by('-id')
+        borrower_id = self.kwargs['borrower_id']
+        return Loan.objects.filter(borrower=borrower_id).order_by('-id')
 
 
 
 class LenderLoanDetailAPIView(generics.RetrieveAPIView):
     serializer_class = LoanSerializer
-    lookup_field = 'id'
+    lookup_field = 'loan_id'
     
     def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Loan.objects.filter(lender=lender).order_by('-id')
+        lender_id = self.kwargs['lender_id']
+        return Loan.objects.filter(lender=lender_id).order_by('-id')
 
 
 class LenderLoanUpdateAPIView(generics.UpdateAPIView):
     serializer_class = LoanSerializer
-    lookup_field = 'id'
+    lookup_field = 'loan_id'
 
     def get_queryset(self):
         lender = self.kwargs['lender']
@@ -111,46 +87,31 @@ class PublicLoansUpdateAPIView(generics.UpdateAPIView):
 
 class LenderLoanDeleteAPIView(generics.DestroyAPIView):
     serializer_class = LoanSerializer
-    lookup_field = 'id'
+    lookup_field = 'loan_id'
 
     def get_queryset(self):
         lender = self.kwargs['lender']
         return Loan.objects.filter(lender=lender).order_by('-id')
 
-
-#################
-## Lender logs ##
-#################
-class LenderLogListView(generics.ListCreateAPIView):
-    serializer_class = LogSerializer
+################
+## Loan votes ##
+################
+class LoanVotesListView(generics.ListCreateAPIView):
+    queryset = LoanVote.objects.all().order_by('-id')
+    serializer_class = LoanVotesSerializer
     pagination_class = StandardResultsSetPagination
+
+
+class LoanVoteUpdateAPIView(generics.UpdateAPIView):
+    serializer_class = LoanVotesSerializer
+    lookup_field = 'email'
+
     def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Log.objects.filter(lender=lender).order_by('-id')
+        loan = self.kwargs['lender']
+        return LoanVote.objects.filter(loan=loan).order_by('-id')
 
 
-class LenderLogDetailAPIView(generics.RetrieveAPIView):
-    queryset = Log.objects.all()
-    serializer_class = LogSerializer
-    lookup_field = 'id'
-    def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Log.objects.filter(lender=lender).order_by('-id')
 
-
-class LenderLogUpdateAPIView(generics.UpdateAPIView):
-    serializer_class = LogSerializer
-    lookup_field = 'id'
-    def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Log.objects.filter(lender=lender).order_by('-id')
-
-class LenderLogDeleteAPIView(generics.DestroyAPIView):
-    serializer_class = LogSerializer
-    lookup_field = 'id'
-    def get_queryset(self):
-        lender = self.kwargs['lender']
-        return Log.objects.filter(lender=lender).order_by('-id')
 
 
 
