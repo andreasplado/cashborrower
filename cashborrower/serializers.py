@@ -23,6 +23,7 @@ class LoanSerializer(serializers.ModelSerializer):
         fields =('lender', 'borrower', 'amount','notes','deadline','creditcount',
         'discreditcount','isUserVoted','isPrivateLoan')
         #fields = '__all__'
+    
 
 class LenderLoanSerializer(serializers.ModelSerializer):
     lender = LoanSerializer(many=False)

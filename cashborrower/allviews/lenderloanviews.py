@@ -30,7 +30,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 #######################
 
 class LenderLoansListView(generics.ListCreateAPIView):
-    serializer_class = LenderLoanSerializer
+    serializer_class = LoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
