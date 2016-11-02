@@ -52,5 +52,5 @@ class LenderLogUpdateAPIView(generics.UpdateAPIView):
 
 class LenderLogDeleteAPIView(generics.DestroyAPIView):
     serializer_class = LogSerializer
-    lookup_field = 'log_id'
+    lookup_field = 'id'
     queryset = Log.objects.all()
