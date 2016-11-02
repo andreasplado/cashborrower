@@ -13,8 +13,8 @@ class Borrower(models.Model):
     email = models.CharField(max_length=100)
 
 class Loan(models.Model):
-    lender_fk = models.ForeignKey(Lender)
-    borrower_fk = models.ForeignKey(Borrower)
+    lender = models.ForeignKey(Lender)
+    borrower = models.ForeignKey(Borrower)
     amount = models.FloatField(default=0.0)
     notes = models.CharField(max_length=255,blank=True)
     deadline = models.DateTimeField(blank=True, null=True)
@@ -26,28 +26,28 @@ class Loan(models.Model):
 
 
 class LoanVote(models.Model):
-    loan_fk = models.ForeignKey(Loan)
-    voter_fk =  models.ForeignKey(Lender)
+    loan = models.ForeignKey(Loan)
+    lender =  models.ForeignKey(Lender)
 
 class Log(models.Model):
-    lender_fk = models.ForeignKey(Lender)
-    borrower_fk = models.ForeignKey(Borrower)
+    lender = models.ForeignKey(Lender)
+    borrower = models.ForeignKey(Borrower)
     sum = models.FloatField(default=0.0)
     isLoanLended = models.BooleanField(default=False)
     isLoanReturned = models.BooleanField(default=False)
 
 class Comment(models.Model):
-    loan_fk = models.ForeignKey(Loan)
+    loan = models.ForeignKey(Loan)
     comment = models.CharField(max_length=100)
     def __str__(self):
         return self.comment
 
 class LoanCredit(models.Model):
-    loan_fk = models.ForeignKey(Loan)
+    loan = models.ForeignKey(Loan)
     credit = models.BooleanField(default=False)
 
 class CommentLike(models.Model):
-    comment_fk = models.ForeignKey(Comment)
+    comment = models.ForeignKey(Comment)
     like = models.BooleanField(default=False)
 
 

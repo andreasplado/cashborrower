@@ -35,7 +35,7 @@ class LenderLoansListView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         lender_fk = self.kwargs['lender_fk']
-        return Loan.objects.filter(lender_fk=lender_fk).order_by('-id')
+        return Loan.objects.filter(lender=lender_fk).order_by('-id')
 
 class LenderLoanDetailAPIView(generics.RetrieveAPIView):
     serializer_class = LoanSerializer
@@ -44,7 +44,7 @@ class LenderLoanDetailAPIView(generics.RetrieveAPIView):
     def get_queryset(self):
         id = self.kwargs['id']
         lender_fk = self.kwargs['lender_fk']
-        return Loan.objects.filter(id=id).filter(lender_fk=lender_fk).order_by('-id')
+        return Loan.objects.filter(id=id).filter(lender=lender_fk).order_by('-id')
 
 class LenderLoanUpdateAPIView(generics.UpdateAPIView):
     queryset = Loan.objects.all()
@@ -65,6 +65,6 @@ class LenderLoansListViewSearchByEmail(generics.ListCreateAPIView):
         lender_fk = self.kwargs['lender_fk']
         # INNER JOIN
         borrower = Borrower.objects.filter(email=borrower_email)
-        lender = Loan.objects.filter(lender_fk=lender_fk).order_by('-id')
+        lender = Loan.objects.filter(lender=lender_fk).order_by('-id')
         innerjoinQuery = chain(borrower, lender)
         return list(innerjoinQuery)

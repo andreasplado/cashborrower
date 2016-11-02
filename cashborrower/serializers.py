@@ -4,21 +4,23 @@ from .models import Loan, LoanVote, LoanCredit, Comment, CommentLike, Log, Borro
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lender
-        fields = ('email',) #to make single element tuple add comma.
+        fields = ('email',) 
+        #fiels = 'email' #to make single element tuple add comma.
         #it needs tuple to be serializable
 
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
-        fields = ('email',) #to make single element tuple add comma.
+        fields = ('email',) 
+        #field = 'email' #to make single element tuple add comma.
         #it needs tuple to be serializable
 
 class LoanSerializer(serializers.ModelSerializer):
-    lender_fk = LenderSerializer(many=False)
-    borrower_fk = BorrowerSerializer(many=False)
+    lender = LenderSerializer(many=False)
+    borrower = BorrowerSerializer(many=False)
     class Meta:
         model = Loan
-        fields =('lender_fk', 'borrower_fk', 'amount','notes','deadline','creditcount',
+        fields =('lender', 'borrower', 'amount','notes','deadline','creditcount',
         'discreditcount','isUserVoted','isPrivateLoan')
         #fields = '__all__'
 

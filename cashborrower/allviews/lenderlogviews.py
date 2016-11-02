@@ -33,7 +33,7 @@ class LenderLogListView(generics.ListCreateAPIView):
     
     def get_queryset(self):
         lender_fk = self.kwargs['lender_fk']
-        return Log.objects.filter(lender_fk=lender_fk).order_by('-id')
+        return Log.objects.filter(lender=lender_fk).order_by('-id')
 
 
 class LenderLogDetailAPIView(generics.RetrieveAPIView):
@@ -42,7 +42,7 @@ class LenderLogDetailAPIView(generics.RetrieveAPIView):
     lookup_field = 'id'
     def get_queryset(self):
         lender_fk = self.kwargs['lender_fk']
-        return Log.objects.filter(lender_fk=lender_fk).order_by('-id')
+        return Log.objects.filter(lender=lender_fk).order_by('-id')
 
 
 class LenderLogUpdateAPIView(generics.UpdateAPIView):

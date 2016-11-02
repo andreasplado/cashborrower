@@ -35,7 +35,7 @@ class LoanVotesListView(generics.ListCreateAPIView):
     
     def get_queryset(self):
         loan_fk = self.kwargs['loan_fk']
-        return LoanVote.objects.filter(loan_fk=loan_fk).order_by('-id')
+        return LoanVote.objects.filter(loan=loan_fk).order_by('-id')
 
 
 class LoanVoteDetailAPIView(generics.ListCreateAPIView):
@@ -45,7 +45,7 @@ class LoanVoteDetailAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         id = self.kwargs['id']
         loan_fk = self.kwargs['loan_fk']
-        return LoanVote.objects.filter(id=id).filter(loan_fk=loan_fk).order_by('-id')
+        return LoanVote.objects.filter(id=id).filter(loan=loan_fk).order_by('-id')
 
 class LoanVoteUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanVote.objects.all()
