@@ -37,7 +37,7 @@ class LenderCreditListView(generics.ListCreateAPIView):
         loan_fk = self.kwargs['loan_fk']
 
         lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanCredit.objects.filter(loan_fk=loan_fk).order_by('-id').filter(credit=True)
+        loanCredit = LoanCredit.objects.filter(loan=loan_fk).order_by('-id').filter(credit=True)
         innerjoinQuery = chain(lender, loanCredit)
         return list(innerjoinQuery)
 
@@ -49,7 +49,7 @@ class LenderDiscreditListView(generics.ListCreateAPIView):
         loan_fk = self.kwargs['loan_fk']
 
         lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanCredit.objects.filter(loan_fk=loan_fk).order_by('-id').filter(credit=False)
+        loanCredit = LoanCredit.objects.filter(loan=loan_fk).order_by('-id').filter(credit=False)
         innerjoinQuery = chain(lender, loanCredit)
         return list(innerjoinQuery)
 
@@ -61,7 +61,7 @@ class LenderCreditDetailAPIView(generics.RetrieveAPIView):
         loan_fk = self.kwargs['loan_fk']
         id = self.kwargs['id']
         lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanCredit.objects.filter(loan_fk=loan_fk).filter(id=id).order_by('-id')
+        loanCredit = LoanCredit.objects.filter(loan=loan_fk).filter(id=id).order_by('-id')
         innerjoinQuery = chain(lender, loanCredit)
         return list(innerjoinQuery)
 
@@ -80,6 +80,6 @@ class LenderCreditDeleteAPIView(generics.DestroyAPIView):
         id = self.kwargs['id']
         loan_fk = self.kwargs['loan_fk']
         lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanCredit.objects.filter(loan_fk=loan_fk).filter(id=id).order_by('-id')
+        loanCredit = LoanCredit.objects.filter(loan=loan_fk).filter(id=id).order_by('-id')
         innerjoinQuery = chain(lender, loanCredit)
         return list(innerjoinQuery)
