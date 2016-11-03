@@ -1,23 +1,9 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from ..models import Loan, LoanCredit, Comment, CommentLike, Log, LoanVote, Lender
-from ..serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer, LoanVotesSerializer, LenderSerializer
-from rest_framework.settings import api_settings
-from rest_framework import generics
+from ..models import Log
 from rest_framework.pagination import(
-    LimitOffsetPagination,
     PageNumberPagination
 )
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView
-)
-from rest_framework import generics, permissions
+from rest_framework import generics
+from ..serializers import lenderlog_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -28,7 +14,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender logs ##
 #################
 class LenderLogListView(generics.ListCreateAPIView):
-    serializer_class = LogSerializer
+    serializer_class = lenderlog_serializers.LogSerializer
     pagination_class = StandardResultsSetPagination
     
     def get_queryset(self):
@@ -38,7 +24,7 @@ class LenderLogListView(generics.ListCreateAPIView):
 
 class LenderLogDetailAPIView(generics.RetrieveAPIView):
     queryset = Log.objects.all()
-    serializer_class = LogSerializer
+    serializer_class = lenderlog_serializers.LogSerializer
     lookup_field = 'id'
     def get_queryset(self):
         lender_fk = self.kwargs['lender_fk']
@@ -46,11 +32,11 @@ class LenderLogDetailAPIView(generics.RetrieveAPIView):
 
 
 class LenderLogUpdateAPIView(generics.UpdateAPIView):
-    serializer_class = LogSerializer
+    serializer_class = lenderlog_serializers.LogSerializer
     lookup_field = 'id'
     queryset = Log.objects.all()
 
 class LenderLogDeleteAPIView(generics.DestroyAPIView):
-    serializer_class = LogSerializer
+    serializer_class = lenderlog_serializers.LogSerializer
     lookup_field = 'id'
     queryset = Log.objects.all()

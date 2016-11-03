@@ -4,28 +4,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from ..models import Borrower
-from ..serializers import(
-    LoanSerializer, 
-    LogSerializer, 
-    LoanCreditSerializer, 
-    CommentSerializer, 
-    CommentLikeSerializer, 
-    LoanVotesSerializer, 
-    BorrowerSerializer,
-)
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
     LimitOffsetPagination,
     PageNumberPagination
 )
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView
-)
+
 from rest_framework import generics, permissions
+from ..serializers import borrower_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -39,13 +26,14 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class BorrowerListView(generics.ListCreateAPIView):
     queryset = Borrower.objects.all().order_by('-id')
-    serializer_class = BorrowerSerializer
+    serializer_class = borrower_serializers.BorrowerSerializer
     pagination_class = StandardResultsSetPagination
 
 
-class BorrowerDetailAPIView(generics.ListCreateAPIView):
-    serializer_class = BorrowerSerializer
+class BorrowerDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = borrower_serializers.BorrowerSerializer
     pagination_class = StandardResultsSetPagination
+    lookup_field = 'id'
 
     def get_queryset(self):
         id = self.kwargs['id']
@@ -53,10 +41,10 @@ class BorrowerDetailAPIView(generics.ListCreateAPIView):
 
 class BorrowerUpdateAPIView(generics.UpdateAPIView):
     queryset = Borrower.objects.all()
-    serializer_class = BorrowerSerializer
+    serializer_class = borrower_serializers.BorrowerSerializer
     lookup_field = 'id'
 
 class BorrowerDeleteAPIView(generics.DestroyAPIView):
     queryset = Borrower.objects.all()
-    serializer_class = BorrowerSerializer
+    serializer_class = borrower_serializers.BorrowerSerializer
     lookup_field = 'id'

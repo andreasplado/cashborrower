@@ -3,8 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ..models import Loan, LoanCredit, Comment, CommentLike, Log, LoanVote, Lender
-from ..serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer, LoanVotesSerializer, LoanVotesSerializer
+from ..models import Loan, Lender, LoanLike
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -19,6 +18,7 @@ from rest_framework.generics import (
 )
 from rest_framework import generics, permissions
 from itertools import chain
+from ..serializers import loanvote_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -29,36 +29,36 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Loan votes view ##
 #####################
 
-class LoanVotesListView(generics.ListCreateAPIView):
-    serializer_class = LoanVotesSerializer
+class LoanLikeListView(generics.ListCreateAPIView):
+    serializer_class = loanvote_serializers.LoanVotesSerializer
     pagination_class = StandardResultsSetPagination
     
     def get_queryset(self):
         loan_fk = self.kwargs['loan_fk']
-        return LoanVote.objects.filter(loan=loan_fk).order_by('-id')
+        return LoanLike.objects.filter(loan=loan_fk).order_by('-id')
 
 
-class LoanVoteDetailAPIView(generics.ListCreateAPIView):
-    serializer_class = LoanVotesSerializer
-    pagination_class = StandardResultsSetPagination
+class LoanLikeDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = loanvote_serializers.LoanVotesSerializer
+    lookup_field = 'id'
 
     def get_queryset(self):
         id = self.kwargs['id']
         loan_fk = self.kwargs['loan_fk']
-        return LoanVote.objects.filter(id=id).filter(loan=loan_fk).order_by('-id')
+        return LoanLike.objects.filter(id=id).filter(loan=loan_fk).order_by('-id')
 
-class LoanVoteUpdateAPIView(generics.UpdateAPIView):
-    queryset = LoanVote.objects.all()
-    serializer_class = LoanVotesSerializer
+class LoanLikeUpdateAPIView(generics.UpdateAPIView):
+    queryset = LoanLike.objects.all()
+    serializer_class = loanvote_serializers.LoanVotesSerializer
     lookup_field = 'id'
 
-class LoanVoteDeleteAPIView(generics.DestroyAPIView):
-    queryset = LoanVote.objects.all()
-    serializer_class = LoanVotesSerializer
+class LoanLikeDeleteAPIView(generics.DestroyAPIView):
+    queryset = LoanLike.objects.all()
+    serializer_class = loanvote_serializers.LoanVotesSerializer
     lookup_field = 'id'
 
 class LoanVoteByLenderAPIView(generics.ListCreateAPIView):
-    serializer_class = LoanVotesSerializer
+    serializer_class = loanvote_serializers.LoanVotesSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):

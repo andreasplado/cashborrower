@@ -3,8 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ..models import Loan, LoanCredit, Comment, CommentLike, Log, LoanVote, Lender
-from ..serializers import LoanSerializer, LogSerializer, LoanCreditSerializer, CommentSerializer, CommentLikeSerializer, LoanVotesSerializer, LenderSerializer
+from ..models import Lender
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -18,6 +17,7 @@ from rest_framework.generics import (
     UpdateAPIView
 )
 from rest_framework import generics, permissions
+from ..serializers import lender_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -30,12 +30,12 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class LenderListView(generics.ListCreateAPIView):
     queryset = Lender.objects.all().order_by('-id')
-    serializer_class = LenderSerializer
+    serializer_class = lender_serializers.LenderSerializer
     pagination_class = StandardResultsSetPagination
 
 
-class LenderDetailAPIView(generics.ListCreateAPIView):
-    serializer_class = LenderSerializer
+class LenderDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = lender_serializers.LenderSerializer
     pagination_class = StandardResultsSetPagination
     lookup_field = 'id'
 
@@ -45,10 +45,10 @@ class LenderDetailAPIView(generics.ListCreateAPIView):
 
 class LenderUpdateAPIView(generics.UpdateAPIView):
     queryset = Lender.objects.all()
-    serializer_class = LenderSerializer
+    serializer_class = lender_serializers.LenderSerializer
     lookup_field = 'id'
 
 class LenderDeleteAPIView(generics.DestroyAPIView):
     queryset = Lender.objects.all()
-    serializer_class = LenderSerializer
+    serializer_class = lender_serializers.LenderSerializer
     lookup_field = 'id'
