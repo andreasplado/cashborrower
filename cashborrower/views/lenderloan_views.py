@@ -62,17 +62,17 @@ class LenderLoansListViewSearchByEmail(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
-        loan_fk = self.kwargs['loan_fk']
+        lender = self.kwargs['lender']
+        loan = self.kwargs['loan']
         borrower_email = self.kwargs['borrower_email']
         
         # INNER JOIN
-        lender = Lender.objects.filter(id=lender_fk).order_by('-id')
-        loan = Loan.objects.filter(id=loan_fk)
-        borrowerEmail = Borrower.objects.filter(email=borrower_email)
+        lenderQuery = Lender.objects.filter(id=lender).order_by('-id')
+        loanQuery = Loan.objects.filter(id=loan)
+        borrowerEmailQuery = Borrower.objects.filter(email=borrower_email)
         
-        innerjoinQuery = chain(lender, loan, borrowerEmail)
-        if not borrowerEmail or not lender or not loan:
+        innerjoinQuery = chain(lenderQuery, loanQuery, borrowerEmailQuery)
+        if not borrowerEmailQuery or not lenderQuery or not loanQuery:
             return list()
         else:
             return list(innerjoinQuery)

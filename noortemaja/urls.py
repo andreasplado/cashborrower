@@ -35,17 +35,24 @@ urlpatterns = [
     # ADMIN #
     url(r'^admin/', admin.site.urls),
 
-    # LOAN #
-    url(r'^loans/', loan_views.LoanListView.as_view()),
-    url(r'^loan/(?P<id>[0-9]+)', loan_views.LoanDetailAPIView.as_view()),
-    url(r'^loan/update/(?P<id>[0-9]+)', loan_views.LoanUpdateAPIView.as_view()),
-    url(r'^loan/delete/(?P<id>[0-9]+)', loan_views.LoanDeleteAPIView.as_view()),
+    # PUBLIC LOANS #
+    url(r'^publicloans/', loan_views.PublicLoanListView.as_view()),
+    url(r'^publicloan/(?P<id>[0-9]+)', loan_views.PublicLoanDetailAPIView.as_view()),
+    url(r'^publicloan/update/(?P<id>[0-9]+)', loan_views.PublicLoanUpdateAPIView.as_view()),
+    url(r'^publicloan/delete/(?P<id>[0-9]+)', loan_views.PublicLoanDeleteAPIView.as_view()),
 
-    # LOAN VOTE #
-    url(r'^loanlikes/loan/(?P<loan_fk>[0-9]+)/likes/', loanlike_views.LoanLikeListView.as_view()),
-    url(r'^loanlike/loan/(?P<loan_fk>[0-9]+)/like/(?P<id>[0-9]+)', loanlike_views.LoanLikeDetailAPIView.as_view()),
-    url(r'^loanlike/loan/(?P<loan_fk>[0-9]+)/like/update/(?P<id>[0-9]+)', loanlike_views.LoanLikeUpdateAPIView.as_view()),
-    url(r'^loanlike/loan/(?P<loan_fk>[0-9]+)/like/delete/(?P<id>[0-9]+)', loanlike_views.LoanLikeDeleteAPIView.as_view()),
+    # PRIVATE LOANS #
+    url(r'^privateloans/', loan_views.PrivateLoanListView.as_view()),
+    url(r'^privateloan/(?P<id>[0-9]+)', loan_views.PrivateLoanDetailAPIView.as_view()),
+    url(r'^privateloan/update/(?P<id>[0-9]+)', loan_views.PrivateLoanUpdateAPIView.as_view()),
+    url(r'^privateloan/delete/(?P<id>[0-9]+)', loan_views.PrivateLoanDeleteAPIView.as_view()),
+
+
+    # LOAN LIKES #
+    url(r'^loanlikes/loan/(?P<loan>[0-9]+)/likes/', loanlike_views.LoanLikeListView.as_view()),
+    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/(?P<id>[0-9]+)', loanlike_views.LoanLikeDetailAPIView.as_view()),
+    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/update/(?P<id>[0-9]+)', loanlike_views.LoanLikeUpdateAPIView.as_view()),
+    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/delete/(?P<id>[0-9]+)', loanlike_views.LoanLikeDeleteAPIView.as_view()),
 
     # LOAN VOTE(PUBLIC)#
     # url(r'^loanvotes/loan/(?P<loan_id>[0-9]+)/vote/user/(?P<lender_id>[0-9]+)', loanvote_views.LoanVoteByLenderAPIView.as_view()), # TODO : not implemented yet.
@@ -57,25 +64,13 @@ urlpatterns = [
     url(r'^lender/delete/(?P<id>[0-9]+)', lender_views.LenderDeleteAPIView.as_view()),
 
     # LENDER LOG #
-    url(r'^lenderlogs/lender/(?P<lender_fk>[0-9]+)/logs/', lenderlog_views.LenderLogListView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/(?P<id>[0-9]+)',
+    url(r'^lenderlogs/lender/(?P<lender>[0-9]+)/logs/', lenderlog_views.LenderLogListView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[0-9]+)/log/(?P<id>[0-9]+)',
         lenderlog_views.LenderLogDetailAPIView.as_view()),
     url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/update/(?P<id>[0-9]+)',
         lenderlog_views.LenderLogUpdateAPIView.as_view()),
     url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/delete/(?P<id>[0-9]+)',
         lenderlog_views.LenderLogDeleteAPIView.as_view()),
-
-    # LENDER LOAN CREDIT #
-    url(r'^lenderloancredits/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/credits/',
-        lenderloancredit_views.LenderLoanCreditListView.as_view()),
-    url(r'^lenderloandiscredits/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/discredits/',
-        lenderloancredit_views.LenderLoanDiscreditListView.as_view()),
-    url(r'^lenderloancredit/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/credit/(?P<id>[0-9]+)',
-        lenderloancredit_views.LenderLoanCreditDetailAPIView.as_view()),
-    url(r'^lenderloancredit/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/credit/update/(?P<id>[0-9]+)',
-        lenderloancredit_views.LenderLoanCreditUpdateAPIView.as_view()),
-    url(r'^lenderloancredit/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/credit/delete/(?P<id>[0-9]+)',
-        lenderloancredit_views.LenderLoanCreditDeleteAPIView.as_view()),
 
     # LENDER LOAN #
     url(r'^lenderloans/lender/(?P<lender_fk>[0-9]+)/loans/', lenderloan_views.LenderLoansListView.as_view()),
@@ -84,7 +79,7 @@ urlpatterns = [
     url(r'^lenderloan/lender/(?P<lender_fk>[0-9]+)/loan/delete/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDeleteAPIView.as_view()),
     
     # SEARCH LENDER LOAN BY EMAIL #
-    url(r'^searchlenderloanbyemail/lender/(?P<lender_fk>[0-9]+)/loan/(?P<loan_fk>[0-9]+)/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
+    url(r'^searchlenderloanbyemail/lender/(?P<lender>[0-9]+)/loan/(?P<loan>[0-9]+)/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
         lenderloan_views.LenderLoansListViewSearchByEmail.as_view()),
 
 

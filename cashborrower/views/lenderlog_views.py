@@ -18,7 +18,7 @@ class LenderLogListView(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
     
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
+        lender_fk = self.kwargs['lender']
         return Log.objects.filter(lender=lender_fk).order_by('-id')
 
 
@@ -27,7 +27,7 @@ class LenderLogDetailAPIView(generics.RetrieveAPIView):
     serializer_class = lenderlog_serializers.LogSerializer
     lookup_field = 'id'
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
+        lender_fk = self.kwargs['lender']
         return Log.objects.filter(lender=lender_fk).order_by('-id')
 
 

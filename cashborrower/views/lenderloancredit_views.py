@@ -20,43 +20,42 @@ class LenderLoanCreditListView(generics.ListCreateAPIView):
     serializer_class = lenderloancredit_serializers.LenderLoanCreditSerializer
     pagination_class = StandardResultsSetPagination
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
-        loan_fk = self.kwargs['loan_fk']
+        lender = self.kwargs['lender']
+        loan = self.kwargs['loan']
 
-        lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanLike.objects.filter(loan=loan_fk).order_by('-id').filter(credit=True)
-        innerjoinQuery = chain(lender, loanCredit)
+        lenderQuery = Lender.objects.filter(id=lender)
+        loanQuery = LoanLike.objects.filter(loan=loan).order_by('-id').filter(credit=True)
+        innerjoinQuery = chain(lenderQuery, loanQuery)
         return list(innerjoinQuery)
 
 class LenderLoanDiscreditListView(generics.ListCreateAPIView):
     serializer_class = lenderloancredit_serializers.LenderLoanCreditSerializer
     pagination_class = StandardResultsSetPagination
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
-        loan_fk = self.kwargs['loan_fk']
+        lender = self.kwargs['laender']
+        loan = self.kwargs['loan']
 
-        lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanLike.objects.filter(loan=loan_fk).order_by('-id').filter(credit=False)
-        innerjoinQuery = chain(lender, loanCredit)
+        lenderQuery = Lender.objects.filter(id=lender)
+        loanQuery = LoanLike.objects.filter(loan=loan).order_by('-id').filter(credit=False)
+        innerjoinQuery = chain(lenderQuery, loanQuery)
         return list(innerjoinQuery)
 
 class LenderLoanCreditDetailAPIView(generics.RetrieveAPIView):
     serializer_class = lenderloancredit_serializers.LenderLoanCreditSerializer
     lookup_field = 'id'
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
-        loan_fk = self.kwargs['loan_fk']
+        lender = self.kwargs['lender']
+        loan = self.kwargs['loan']
         id = self.kwargs['id']
-        lender = Lender.objects.filter(id=lender_fk)
-        loanCredit = LoanLike.objects.filter(loan=loan_fk).filter(id=id).order_by('-id')
-        innerjoinQuery = chain(lender, loanCredit)
+        lenderQuery = Lender.objects.filter(id=lender)
+        loanQuery = LoanLike.objects.filter(loan=loan).filter(id=id).order_by('-id')
+        innerjoinQuery = chain(lenderQuery, loanQuery)
         return list(innerjoinQuery)
 
 class LenderLoanCreditUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanLike.objects.all()
     serializer_class = lenderloancredit_serializers.LenderLoanCreditSerializer
     lookup_field = 'id'
-    queryset = LoanLike.objects.all()
 
 class LenderLoanCreditDeleteAPIView(generics.DestroyAPIView):
     queryset = LoanLike.objects.all()

@@ -14,9 +14,9 @@ class LenderSerializer(serializers.ModelSerializer):
         fields =('email',)
         #fields = '__all__'
 
-class LoanVotesSerializer(serializers.ModelSerializer):
+class LoanLikesSerializer(serializers.ModelSerializer):
     lender = LenderSerializer(many=False)
     class Meta:
         model = LoanLike
-        fields =('id', 'lender', 'loan')
+        fields =('lender',)
         #fields = '__all__'

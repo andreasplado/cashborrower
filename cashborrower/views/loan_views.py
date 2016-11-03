@@ -12,28 +12,54 @@ class StandardResultsSetPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
-################
-## Loan views ##
-################
+#######################
+## PUBLIC Loan views ##
+#######################
 
-class LoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.all().order_by('-id')
+class PublicLoanListView(generics.ListCreateAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     pagination_class = StandardResultsSetPagination
 
 
-class LoanDetailAPIView(generics.RetrieveAPIView):
-    queryset = Loan.objects.all()
+class PublicLoanDetailAPIView(generics.RetrieveAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 
-class LoanUpdateAPIView(generics.UpdateAPIView):
-    queryset = Loan.objects.all()
+class PublicLoanUpdateAPIView(generics.UpdateAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
-class LoanDeleteAPIView(generics.DestroyAPIView):
-    queryset = Loan.objects.all()
+class PublicLoanDeleteAPIView(generics.DestroyAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
+    serializer_class = loan_serializers.LoanSerializer
+    lookup_field = 'id'
+
+########################
+## PRIVATE Loan views ##
+########################
+
+class PrivateLoanListView(generics.ListCreateAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
+    serializer_class = loan_serializers.LoanSerializer
+    pagination_class = StandardResultsSetPagination
+
+
+class PrivateLoanDetailAPIView(generics.RetrieveAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
+    serializer_class = loan_serializers.LoanSerializer
+    lookup_field = 'id'
+
+
+class PrivateLoanUpdateAPIView(generics.UpdateAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
+    serializer_class = loan_serializers.LoanSerializer
+    lookup_field = 'id'
+
+class PrivateLoanDeleteAPIView(generics.DestroyAPIView):
+    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
