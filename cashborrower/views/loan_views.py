@@ -17,49 +17,23 @@ class StandardResultsSetPagination(PageNumberPagination):
 #######################
 
 class PublicLoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
+    queryset = Loan.objects.order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     pagination_class = StandardResultsSetPagination
 
 
 class PublicLoanDetailAPIView(generics.RetrieveAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
+    queryset = Loan.objects.order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 
 class PublicLoanUpdateAPIView(generics.UpdateAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
+    queryset = Loan.objects.order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 class PublicLoanDeleteAPIView(generics.DestroyAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=False).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
-    lookup_field = 'id'
-
-########################
-## PRIVATE Loan views ##
-########################
-
-class PrivateLoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
-    pagination_class = StandardResultsSetPagination
-
-
-class PrivateLoanDetailAPIView(generics.RetrieveAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
-    lookup_field = 'id'
-
-
-class PrivateLoanUpdateAPIView(generics.UpdateAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
-    lookup_field = 'id'
-
-class PrivateLoanDeleteAPIView(generics.DestroyAPIView):
-    queryset = Loan.objects.filter(isPrivateLoan=True).order_by('-id')
+    queryset = Loan.objects.order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'

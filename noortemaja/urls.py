@@ -41,12 +41,6 @@ urlpatterns = [
     url(r'^publicloan/update/(?P<id>[0-9]+)', loan_views.PublicLoanUpdateAPIView.as_view()),
     url(r'^publicloan/delete/(?P<id>[0-9]+)', loan_views.PublicLoanDeleteAPIView.as_view()),
 
-    # PRIVATE LOANS #
-    url(r'^privateloans/', loan_views.PrivateLoanListView.as_view()),
-    url(r'^privateloan/(?P<id>[0-9]+)', loan_views.PrivateLoanDetailAPIView.as_view()),
-    url(r'^privateloan/update/(?P<id>[0-9]+)', loan_views.PrivateLoanUpdateAPIView.as_view()),
-    url(r'^privateloan/delete/(?P<id>[0-9]+)', loan_views.PrivateLoanDeleteAPIView.as_view()),
-
 
     # LOAN LIKES #
     url(r'^loanlikes/loan/(?P<loan>[0-9]+)/likes/', loanlike_views.LoanLikeListView.as_view()),
@@ -80,7 +74,7 @@ urlpatterns = [
     
     # SEARCH LENDER LOAN BY EMAIL #
     url(r'^searchlenderloanbyemail/lender/(?P<lender>[0-9]+)/loan/(?P<loan>[0-9]+)/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
-        lenderloan_views.LenderLoansListViewSearchByEmail.as_view()),
+        lenderloan_views.LenderLoansListViewSearchByEmail.as_view()), #not working
 
 
 

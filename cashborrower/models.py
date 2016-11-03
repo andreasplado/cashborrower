@@ -19,7 +19,6 @@ class Loan(models.Model):
     amount = models.FloatField(default=0.0)
     notes = models.CharField(max_length=255,blank=True)
     deadline = models.DateTimeField(blank=True, null=True)
-    isPrivateLoan = models.BooleanField(default=True)
     isLoanReturned = models.BooleanField(default=False)
 
 class LoanLike(models.Model):
