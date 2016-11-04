@@ -23,12 +23,13 @@ class Loan(models.Model):
 
 class LoanLike(models.Model):
     loan = models.ForeignKey(Loan)
-    lender =  models.ForeignKey(Lender)
+    liker = models.CharField(max_length=255)
     isLiked = models.BooleanField(default=True)
 
 class LoanComment(models.Model):
     loan = models.ForeignKey(Loan)
     comment = models.CharField(max_length=100)
+    commenter = models.CharField(max_length=100)
 
 class LoanCommentLike(models.Model):
     comment = models.ForeignKey(LoanComment)

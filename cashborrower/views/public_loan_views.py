@@ -17,7 +17,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 #######################
 
 class PublicLoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.order_by('-id')
+    queryset = Loan.objects.filter().order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     pagination_class = StandardResultsSetPagination
 

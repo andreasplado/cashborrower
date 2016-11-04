@@ -35,7 +35,7 @@ class LenderLoansListView(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender_fk = self.kwargs['lender_fk']
+        lender_fk = self.kwargs['lender']
         return Loan.objects.filter(lender=lender_fk).order_by('-id')
 
 class LenderLoanDetailAPIView(generics.RetrieveAPIView):
@@ -44,7 +44,7 @@ class LenderLoanDetailAPIView(generics.RetrieveAPIView):
     
     def get_queryset(self):
         id = self.kwargs['id']
-        lender_fk = self.kwargs['lender_fk']
+        lender_fk = self.kwargs['lender']
         return Loan.objects.filter(id=id).filter(lender=lender_fk).order_by('-id')
 
 class LenderLoanUpdateAPIView(generics.UpdateAPIView):
@@ -58,18 +58,19 @@ class LenderLoanDeleteAPIView(generics.DestroyAPIView):
     lookup_field = 'id'
 
 class LenderLoansListViewSearchByEmail(generics.ListCreateAPIView):
-    serializer_class = lenderloan_serializers.LenderLoanSerializer
+    serializer_class = lenderloan_serializers.LenderLoanByEmailSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         lender = self.kwargs['lender']
-        loan = self.kwargs['loan']
         borrower_email = self.kwargs['borrower_email']
+        loan = self.kwargs['loan']
+
         
         # INNER JOIN
         lenderQuery = Lender.objects.filter(id=lender).order_by('-id')
-        loanQuery = Loan.objects.filter(id=loan)
         borrowerEmailQuery = Borrower.objects.filter(email=borrower_email)
+        loanQuery = Loan.objects.filter(id=loan)
         
         innerjoinQuery = chain(lenderQuery, loanQuery, borrowerEmailQuery)
         if not borrowerEmailQuery or not lenderQuery or not loanQuery:

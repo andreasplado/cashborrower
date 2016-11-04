@@ -18,7 +18,7 @@ from rest_framework.generics import (
 )
 from rest_framework import generics, permissions
 from itertools import chain
-from ..serializers import loanvote_serializers
+from ..serializers import loanlike_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -30,7 +30,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 #####################
 
 class LoanLikeListView(generics.ListCreateAPIView):
-    serializer_class = loanvote_serializers.LoanLikesSerializer
+    serializer_class = loanlike_serializers.LoanLikesSerializer
     pagination_class = StandardResultsSetPagination
     
     def get_queryset(self):
@@ -39,7 +39,7 @@ class LoanLikeListView(generics.ListCreateAPIView):
 
 
 class LoanLikeDetailAPIView(generics.RetrieveAPIView):
-    serializer_class = loanvote_serializers.LoanLikesSerializer
+    serializer_class = loanlike_serializers.LoanLikesSerializer
     lookup_field = 'id'
 
     def get_queryset(self):
@@ -49,16 +49,16 @@ class LoanLikeDetailAPIView(generics.RetrieveAPIView):
 
 class LoanLikeUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanLike.objects.all()
-    serializer_class = loanvote_serializers.LoanLikesSerializer
+    serializer_class = loanlike_serializers.LoanLikesSerializer
     lookup_field = 'id'
 
 class LoanLikeDeleteAPIView(generics.DestroyAPIView):
     queryset = LoanLike.objects.all()
-    serializer_class = loanvote_serializers.LoanLikesSerializer
+    serializer_class = loanlike_serializers.LoanLikesSerializer
     lookup_field = 'id'
 
 class LoanVoteByLenderAPIView(generics.ListCreateAPIView):
-    serializer_class = loanvote_serializers.LoanLikesSerializer
+    serializer_class = loanlike_serializers.LoanLikesSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
