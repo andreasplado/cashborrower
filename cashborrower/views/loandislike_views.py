@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+from cashborrower.serializers import loandislike_serializers
 from ..models import Loan, Lender, LoanLike, LoanDislike
 from rest_framework.settings import api_settings
 from rest_framework import generics
@@ -30,7 +32,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 #####################
 
 class LoanDislikeListView(generics.ListCreateAPIView):
-    serializer_class = loanlike_serializers.LoanLikesSerializer
+    serializer_class = loandislike_serializers.LoanDisLikesSerializer
     pagination_class = StandardResultsSetPagination
     
     def get_queryset(self):
