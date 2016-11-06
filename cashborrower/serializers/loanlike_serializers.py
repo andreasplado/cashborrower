@@ -17,5 +17,5 @@ class LenderSerializer(serializers.ModelSerializer):
 class LoanLikesSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanLike
-        fields =('liker', 'isLiked',)
+        fields =('liker')
         #fields = '__all__'
