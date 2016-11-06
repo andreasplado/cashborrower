@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
+
+from cashborrower.views import loandislike_views
 from cashborrower.views import(
     public_loan_views,
     lender_views,
@@ -52,6 +54,12 @@ urlpatterns = [
     url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/(?P<id>[0-9]+)', loanlike_views.LoanLikeDetailAPIView.as_view()),
     url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/update/(?P<id>[0-9]+)', loanlike_views.LoanLikeUpdateAPIView.as_view()),
     url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/delete/(?P<id>[0-9]+)', loanlike_views.LoanLikeDeleteAPIView.as_view()),
+
+    # LOAN DISLIKES #
+    url(r'^loandislikes/loan/(?P<loan>[0-9]+)/dislikes/', loandislike_views.LoanDislikeListView.as_view()),
+    url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/(?P<id>[0-9]+)', loandislike_views.LoanDislikeDetailAPIView.as_view()),
+    url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/update/(?P<id>[0-9]+)', loandislike_views.LoanDislikeUpdateAPIView.as_view()),
+    url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/delete/(?P<id>[0-9]+)', loandislike_views.LoanDislikeDeleteAPIView.as_view()),
 
     # LOAN VOTE(PUBLIC)#
     # url(r'^loanvotes/loan/(?P<loan_id>[0-9]+)/vote/user/(?P<lender_id>[0-9]+)', loanvote_views.LoanVoteByLenderAPIView.as_view()), # TODO : not implemented yet.

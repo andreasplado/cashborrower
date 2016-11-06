@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from ..models import Lender, Loan, LoanLike
+from ..models import Lender, Loan, LoanLike, LoanDislike
+
 
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,7 +15,7 @@ class LenderSerializer(serializers.ModelSerializer):
         fields =('email',)
         #fields = '__all__'
 
-class LoanLikesSerializer(serializers.ModelSerializer):
+class LoanDisLikesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LoanLike
+        model = LoanDislike
         fields = '__all__'
