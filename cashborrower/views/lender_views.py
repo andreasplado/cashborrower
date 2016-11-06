@@ -43,6 +43,14 @@ class LenderDetailAPIView(generics.RetrieveAPIView):
         id = self.kwargs['id']
         return Lender.objects.filter(id=id).order_by('-id')
 
+class LenderByEmailAPIView(generics.ListCreateAPIView):
+    serializer_class = lender_serializers.LenderSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        email = self.kwargs['lender_email']
+        return Lender.objects.filter(email=email).order_by('-id')
+
 class LenderUpdateAPIView(generics.UpdateAPIView):
     queryset = Lender.objects.all()
     serializer_class = lender_serializers.LenderSerializer

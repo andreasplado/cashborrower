@@ -19,7 +19,8 @@ class LenderLoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields =('lender', 'borrower', 'amount','notes','deadline',
-        'isLoanReturned')
+        'isLoanReturned', 'isLoanPrivate')
+
         #fields = '__all__'
 
 class LenderLoanByEmailSerializer(serializers.ModelSerializer):
@@ -28,5 +29,5 @@ class LenderLoanByEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields =('lender_set','amount','notes','deadline',
-        'isLoanReturned')
+        'isLoanReturned', 'isLoanPrivate')
         #fields = '__all__'

@@ -20,11 +20,15 @@ class Loan(models.Model):
     notes = models.CharField(max_length=255,blank=True)
     deadline = models.DateTimeField(blank=True, null=True)
     isLoanReturned = models.BooleanField(default=False)
+    isLoanPrivate = models.BooleanField(default=False)
 
 class LoanLike(models.Model):
     loan = models.ForeignKey(Loan)
     liker = models.CharField(max_length=255)
-    isLiked = models.BooleanField(default=True)
+
+class LoanDislike(models.Model):
+    loan = models.ForeignKey(Loan)
+    disliker = models.CharField(max_length=255)
 
 class LoanComment(models.Model):
     loan = models.ForeignKey(Loan)

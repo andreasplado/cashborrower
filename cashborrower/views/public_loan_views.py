@@ -1,5 +1,5 @@
 
-from ..models import Loan
+from ..models import Loan, LoanLike
 from rest_framework.pagination import(
     PageNumberPagination
 )
@@ -17,23 +17,23 @@ class StandardResultsSetPagination(PageNumberPagination):
 #######################
 
 class PublicLoanListView(generics.ListCreateAPIView):
-    queryset = Loan.objects.filter().order_by('-id')
+    queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     pagination_class = StandardResultsSetPagination
 
 
 class PublicLoanDetailAPIView(generics.RetrieveAPIView):
-    queryset = Loan.objects.order_by('-id')
+    queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 
 class PublicLoanUpdateAPIView(generics.UpdateAPIView):
-    queryset = Loan.objects.order_by('-id')
+    queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 class PublicLoanDeleteAPIView(generics.DestroyAPIView):
-    queryset = Loan.objects.order_by('-id')
+    queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
     serializer_class = loan_serializers.LoanSerializer
     lookup_field = 'id'

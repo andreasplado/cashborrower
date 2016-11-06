@@ -59,6 +59,7 @@ urlpatterns = [
     # LENDER #
     url(r'^lenders/', lender_views.LenderListView.as_view()),
     url(r'^lender/(?P<id>[0-9]+)', lender_views.LenderDetailAPIView.as_view()),
+    url(r'^lender/(?P<lender_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', lender_views.LenderByEmailAPIView.as_view()),
     url(r'^lender/update/(?P<id>[0-9]+)', lender_views.LenderUpdateAPIView.as_view()),
     url(r'^lender/delete/(?P<id>[0-9]+)', lender_views.LenderDeleteAPIView.as_view()),
 

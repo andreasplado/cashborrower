@@ -17,8 +17,19 @@ class BorrowerSerializer(serializers.ModelSerializer):
 class LoanSerializer(serializers.ModelSerializer):
     lender = LenderSerializer(many=False)
     borrower = BorrowerSerializer(many=False)
+    loanLikeCount = serializers.IntegerField(
+        source='loanlike_set.count',
+        read_only=True
+    )
+    loanDislikeCount = serializers.IntegerField(
+        source='loandislike_set.count',
+        read_only=True
+    )
+
+
+
     class Meta:
         model = Loan
-        fields =('lender', 'borrower', 'amount','notes','deadline',
-                 'isLoanReturned')
-        #fields = '__all__'
+        fields =('id','lender', 'borrower', 'amount','notes','deadline',
+                 'isLoanReturned', 'isLoanPrivate', 'loanLikeCount', 'loanDislikeCount')
+        # fields = '__all__'
