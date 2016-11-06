@@ -19,7 +19,8 @@ class LoanSerializer(serializers.ModelSerializer):
     borrower = BorrowerSerializer(many=False)
     loanLikeCount = serializers.IntegerField(
         source='loanlike_set.count',
-        read_only=True
+        read_only=True,
+        null = True
     )
     loanDislikeCount = serializers.IntegerField(
         source='loandislike_set.count',
