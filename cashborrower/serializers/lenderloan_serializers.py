@@ -28,6 +28,6 @@ class LenderLoanByEmailSerializer(serializers.ModelSerializer):
     borrower_set = BorrowerSerializer(many=True, read_only=True)#use _set for backwards compability
     class Meta:
         model = Loan
-        fields =('lender_set','amount','notes','deadline',
+        fields =('lender_set', 'borrower_set','amount','notes','deadline',
         'isLoanReturned', 'isLoanPrivate')
         #fields = '__all__'

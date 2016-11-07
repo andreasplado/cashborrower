@@ -50,10 +50,10 @@ urlpatterns = [
 
 
     # LOAN LIKES #
-    url(r'^loanlikes/loan/(?P<loan>[0-9]+)/likes/', loanlike_views.LoanLikeListView.as_view()),
-    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/(?P<id>[0-9]+)', loanlike_views.LoanLikeDetailAPIView.as_view()),
-    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/update/(?P<id>[0-9]+)', loanlike_views.LoanLikeUpdateAPIView.as_view()),
-    url(r'^loanlike/loan/(?P<loan>[0-9]+)/like/delete/(?P<id>[0-9]+)', loanlike_views.LoanLikeDeleteAPIView.as_view()),
+    url(r'^user/(?P<user>[0-9]+)/loanlikes/loan/(?P<loan>[0-9]+)/likes/', loanlike_views.LoanLikeListView.as_view()),
+    url(r'^user/(?P<user>[0-9]+)/loanlike/loan/(?P<loan>[0-9]+)/like/(?P<id>[0-9]+)', loanlike_views.LoanLikeDetailAPIView.as_view()),
+    url(r'^user/(?P<user>[0-9]+)/loanlike/loan/(?P<loan>[0-9]+)/like/update/(?P<id>[0-9]+)', loanlike_views.LoanLikeUpdateAPIView.as_view()),
+    url(r'^user/(?P<user>[0-9]+)/loanlike/loan/(?P<loan>[0-9]+)/like/delete/(?P<id>[0-9]+)', loanlike_views.LoanLikeDeleteAPIView.as_view()),
 
     # LOAN DISLIKES #
     url(r'^loandislikes/loan/(?P<loan>[0-9]+)/dislikes/', loandislike_views.LoanDislikeListView.as_view()),
