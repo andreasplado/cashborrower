@@ -26,6 +26,8 @@ from cashborrower.views import(
     loanlike_views,
     lenderlog_views,
     loancomment_views,
+    lendergivenloan_views,
+    lendertakenloan_views
 
 )
 from django.conf.urls import include, url
@@ -79,6 +81,18 @@ urlpatterns = [
         lenderlog_views.LenderLogUpdateAPIView.as_view()),
     url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/delete/(?P<id>[0-9]+)',
         lenderlog_views.LenderLogDeleteAPIView.as_view()),
+
+
+    # LENDER GIVEN LOANS #
+    url(r'^lendergivenloans/lender/(?P<lender>[0-9]+)/givenloans/', lendergivenloan_views.LenderIsGivenLoanListView.as_view()),
+
+    # LENDER TAKEN LOANS #
+    url(r'^lendertakenloans/lender/(?P<lender>[0-9]+)/takenloans/',
+        lendertakenloan_views.LenderIsTakenLoanListView.as_view()),
+
+    # LENDER TAKEN LOANS #
+    url(r'^lendertakenloans/lender/(?P<lender>[0-9]+)/takenloans/',
+        lendergivenloan_views.LenderIsGivenLoanListView.as_view()),
 
     # LENDER LOAN #
     url(r'^lenderloans/lender/(?P<lender>[0-9]+)/loans/', lenderloan_views.LenderLoansListView.as_view()),

@@ -21,6 +21,7 @@ class Loan(models.Model):
     deadline = models.DateTimeField(blank=True, null=True)
     isLoanReturned = models.BooleanField(default=False)
     isLoanPrivate = models.BooleanField(default=False)
+    isGivenLoan = models.BooleanField(default=True)
 
 class LoanLike(models.Model):
     loan = models.ForeignKey(Loan)
