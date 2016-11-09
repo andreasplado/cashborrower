@@ -19,7 +19,7 @@ from rest_framework.generics import (
 )
 from rest_framework import generics, permissions
 from itertools import chain
-from cashborrower.serializers import lenderloan_serializers
+from cashborrower.serializers import lender_taken_loan_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -30,8 +30,8 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender given loan views ##
 #############################
 
-class LenderIsTakenLoanListView(generics.ListAPIView):
-    serializer_class = lenderloan_serializers.LenderLoanSerializer
+class LenderTakenLoanListView(generics.ListAPIView):
+    serializer_class = lender_taken_loan_serializers.LenderTakenLoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):

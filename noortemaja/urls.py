@@ -87,10 +87,10 @@ urlpatterns = [
 
 
     # LENDER GIVEN LOANS #
-    url(r'^lendergivenloans/lender/(?P<lender>[0-9]+)/givenloans/', lendergivenloan_views.LenderIsGivenLoanListView.as_view()),
+    url(r'^lendergivenloans/lender/(?P<lender>[0-9]+)/givenloans/', lendergivenloan_views.LenderGivenLoanListView.as_view()),
 
     # LENDER TAKEN LOANS #
-    url(r'^lendertakenloans/lender/(?P<lender>[0-9]+)/takenloans/', lendertakenloan_views.LenderIsTakenLoanListView.as_view()),
+    url(r'^lendertakenloans/lender/(?P<lender>[0-9]+)/takenloans/', lendertakenloan_views.LenderTakenLoanListView.as_view()),
 
     # LENDER LOAN #
 
