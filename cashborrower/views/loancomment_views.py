@@ -26,14 +26,13 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 
-class LoanCommentListView(generics.ListCreateAPIView):
+class LoanCommentListView(generics.ListAPIView):
     serializer_class = loancomment_serializers.LoanCommentSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         loan = self.kwargs['loan']
         return LoanComment.objects.filter(loan=loan).order_by('-id')
-
 
 class LoanCommentDetailAPIView(generics.RetrieveAPIView):
     serializer_class = loancomment_serializers.LoanCommentSerializer
@@ -43,6 +42,16 @@ class LoanCommentDetailAPIView(generics.RetrieveAPIView):
         id = self.kwargs['id']
         loan = self.kwargs['loan']
         return LoanComment.objects.filter(id=id).filter(loan=loan).order_by('-id')
+
+
+class LoanCommentAddAPIView(generics.CreateAPIView):
+    serializer_class = loancomment_serializers.LoanCommentSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        loan = self.kwargs['loan']
+        return LoanComment.objects.filter(loan=loan).order_by('-id')
+
 
 
 class LoanCommentUpdateAPIView(generics.UpdateAPIView):

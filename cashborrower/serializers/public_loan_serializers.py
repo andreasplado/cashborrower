@@ -1,18 +1,20 @@
 from rest_framework import serializers
-from ..models import Lender, Borrower, Loan
+from ..models import Loan, Lender, Borrower
+
 
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lender
-        fields = ('email',) 
-        #fiels = 'email' #to make single element tuple add comma.
-        #it needs tuple to be serializable
+        fields = ('email',)
+        #fields = '__all__'
+
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
-        fields = ('email',) 
+        fields = ('email',)
+        #fields = '__all__'
         #field = 'email' #to make single element tuple add comma.
-        #it needs tuple to be serializable
+
 
 class LoanSerializer(serializers.ModelSerializer):
     lender = LenderSerializer(many=False)
@@ -25,9 +27,6 @@ class LoanSerializer(serializers.ModelSerializer):
         source='loandislike_set.count',
         read_only=True
     )
-
-
-
     class Meta:
         model = Loan
         fields =('id','lender', 'borrower', 'amount','notes','deadline',

@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from cashborrower.serializers import loandislike_serializers
-from ..models import Loan, Lender, LoanLike, LoanDislike
+from ..models import LoanLike, LoanDislike
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -31,7 +31,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Loan votes view ##
 #####################
 
-class LoanDislikeListView(generics.ListCreateAPIView):
+class LoanDislikeListView(generics.ListAPIView):
     serializer_class = loandislike_serializers.LoanDisLikesSerializer
     pagination_class = StandardResultsSetPagination
     
@@ -48,6 +48,14 @@ class LoanDislikeDetailAPIView(generics.RetrieveAPIView):
         id = self.kwargs['id']
         loan = self.kwargs['loan']
         return LoanLike.objects.filter(id=id).filter(loan=loan).order_by('-id')
+
+class LoanDislikeAddAPIView(generics.CreateAPIView):
+    serializer_class = loandislike_serializers.LoanDisLikesSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        loan = self.kwargs['loan']
+        return LoanDislike.objects.filter(loan=loan).order_by('-id')
 
 class LoanDislikeUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanLike.objects.all()

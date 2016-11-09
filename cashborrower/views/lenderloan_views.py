@@ -30,13 +30,22 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender loan views ##
 #######################
 
-class LenderLoansListView(generics.ListCreateAPIView):
+class LenderLoanAddAPIView(generics.ListCreateAPIView):
     serializer_class = lenderloan_serializers.LenderLoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender_fk = self.kwargs['lender']
-        return Loan.objects.filter(lender=lender_fk).order_by('-id')
+        lender = self.kwargs['lender']
+        return Loan.objects.filter(lender=lender).order_by('-id')
+
+class LendersLoansList(generics.ListAPIView):
+    serializer_class = lenderloan_serializers.AddLenderLoanSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        lender = self.kwargs['lender']
+        return Loan.objects.filter(lender=lender).order_by('-id')
+
 
 class LenderLoanDetailAPIView(generics.RetrieveAPIView):
     serializer_class = lenderloan_serializers.LenderLoanSerializer

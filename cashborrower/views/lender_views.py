@@ -28,11 +28,12 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender views ##
 ##################
 
-class LenderListView(generics.ListCreateAPIView):
+
+# BASIC CRUD #
+class LenderListView(generics.ListAPIView):
     queryset = Lender.objects.all().order_by('-id')
     serializer_class = lender_serializers.LenderSerializer
     pagination_class = StandardResultsSetPagination
-
 
 class LenderDetailAPIView(generics.RetrieveAPIView):
     serializer_class = lender_serializers.LenderSerializer
@@ -43,13 +44,11 @@ class LenderDetailAPIView(generics.RetrieveAPIView):
         id = self.kwargs['id']
         return Lender.objects.filter(id=id).order_by('-id')
 
-class LenderByEmailAPIView(generics.ListCreateAPIView):
+class LenderAddAPIView(generics.CreateAPIView):
+    queryset = Lender.objects.all().order_by('-id')
     serializer_class = lender_serializers.LenderSerializer
     pagination_class = StandardResultsSetPagination
 
-    def get_queryset(self):
-        email = self.kwargs['lender_email']
-        return Lender.objects.filter(email=email).order_by('-id')
 
 class LenderUpdateAPIView(generics.UpdateAPIView):
     queryset = Lender.objects.all()
@@ -60,3 +59,12 @@ class LenderDeleteAPIView(generics.DestroyAPIView):
     queryset = Lender.objects.all()
     serializer_class = lender_serializers.LenderSerializer
     lookup_field = 'id'
+
+# SPECIAL CASES #
+class LenderByEmailAPIView(generics.ListAPIView):
+    serializer_class = lender_serializers.LenderSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        email = self.kwargs['lender_email']
+        return Lender.objects.filter(email=email).order_by('-id')

@@ -29,7 +29,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Loan votes view ##
 #####################
 
-class LoanLikeListView(generics.ListCreateAPIView):
+class LoanLikeListView(generics.ListAPIView):
     serializer_class = loanlike_serializers.LoanLikesSerializer
     pagination_class = StandardResultsSetPagination
     
@@ -46,6 +46,16 @@ class LoanLikeDetailAPIView(generics.RetrieveAPIView):
         id = self.kwargs['id']
         loan = self.kwargs['loan']
         return LoanLike.objects.filter(id=id).filter(loan=loan).order_by('-id')
+
+
+class LoanLikeAddAPIView(generics.CreateAPIView):
+    serializer_class = loanlike_serializers.LoanLikesSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        loan = self.kwargs['loan']
+        return LoanLike.objects.filter(loan=loan).order_by('-id')
+
 
 class LoanLikeUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanLike.objects.all()

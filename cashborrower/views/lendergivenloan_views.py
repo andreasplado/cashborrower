@@ -35,5 +35,5 @@ class LenderIsGivenLoanListView(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender_fk = self.kwargs['lender']
-        return Loan.objects.filter(lender=lender_fk).filter(isGivenLoan=True).order_by('-id')
+        lender = self.kwargs['lender']
+        return Loan.objects.filter(lender=lender).filter(isGivenLoan=True).order_by('-id')

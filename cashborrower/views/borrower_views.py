@@ -29,6 +29,10 @@ class BorrowerListView(generics.ListCreateAPIView):
     serializer_class = borrower_serializers.BorrowerSerializer
     pagination_class = StandardResultsSetPagination
 
+class BorrowerAddAPIView(generics.CreateAPIView):
+    queryset = Borrower.objects.all().order_by('-id')
+    serializer_class = borrower_serializers.BorrowerSerializer
+    pagination_class = StandardResultsSetPagination
 
 class BorrowerDetailAPIView(generics.RetrieveAPIView):
     serializer_class = borrower_serializers.BorrowerSerializer

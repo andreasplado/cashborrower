@@ -5,7 +5,7 @@ from rest_framework.pagination import(
 )
 
 from rest_framework import generics
-from ..serializers import loan_serializers
+from ..serializers import public_loan_serializers
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10 
@@ -16,24 +16,29 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## PUBLIC Loan views ##
 #######################
 
-class PublicLoanListView(generics.ListCreateAPIView):
+class PublicLoanListView(generics.ListAPIView):
     queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
+    serializer_class = public_loan_serializers.LoanSerializer
     pagination_class = StandardResultsSetPagination
 
 
 class PublicLoanDetailAPIView(generics.RetrieveAPIView):
     queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
+    serializer_class = public_loan_serializers.LoanSerializer
     lookup_field = 'id'
+
+class PublicLoanAddAPIView(generics.CreateAPIView):
+    queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
+    serializer_class = public_loan_serializers.LoanSerializer
+    pagination_class = StandardResultsSetPagination
 
 
 class PublicLoanUpdateAPIView(generics.UpdateAPIView):
     queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
+    serializer_class = public_loan_serializers.LoanSerializer
     lookup_field = 'id'
 
 class PublicLoanDeleteAPIView(generics.DestroyAPIView):
     queryset = Loan.objects.filter(isLoanPrivate=False).order_by('-id')
-    serializer_class = loan_serializers.LoanSerializer
+    serializer_class = public_loan_serializers.LoanSerializer
     lookup_field = 'id'
