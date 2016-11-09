@@ -30,7 +30,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender given loan views ##
 #############################
 
-class LenderIsTakenLoanListView(generics.ListCreateAPIView):
+class LenderIsTakenLoanListView(generics.ListAPIView):
     serializer_class = lenderloan_serializers.LenderLoanSerializer
     pagination_class = StandardResultsSetPagination
 
