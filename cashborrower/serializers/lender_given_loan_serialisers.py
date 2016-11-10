@@ -12,11 +12,11 @@ class BorrowerSerializer(serializers.ModelSerializer):
         model = Borrower
         fields = ('email',)
 
-class LenderLoanSerializer(serializers.ModelSerializer):
+class LenderGivenLoanSerializer(serializers.ModelSerializer):
     lender = LenderSerializer(many=False)
     borrower = BorrowerSerializer(many=False)
 
     class Meta:
         model = Loan
-        fields =('lender','borrower', 'amount','notes','deadline',
+        fields =('id','lender','borrower', 'amount','notes','deadline',
         'isLoanReturned', 'isLoanPrivate')
