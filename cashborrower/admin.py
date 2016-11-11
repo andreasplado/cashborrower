@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import Loan, Lender, Borrower, LoanLike, LoanComment, LoanCommentLike, Log, LoanDislike
+from .models import Loan, LoanLike, LoanComment, LoanCommentLike, LoanCommentDislike, Log, LoanDislike
 # Register your models here.
 
-admin.site.register(Lender)
-admin.site.register(Borrower)
+admin.site.register(LoanCommentDislike)
 admin.site.register(Loan)
 admin.site.register(LoanLike)
 admin.site.register(LoanDislike)

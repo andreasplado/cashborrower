@@ -17,17 +17,17 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from cashborrower.views import loandislike_views
 from cashborrower.views import(
-    public_loan_views,
-    lender_views,
-    lenderloan_views,
-    borrower_views,
-    loanlike_views,
-    lenderlog_views,
-    loancomment_views,
+
+    borrowerloan_views,
     lendergivenloan_views,
-    lendertakenloan_views
+    lenderloan_views,
+    lenderlog_views,
+    lendertakenloan_views,
+    loancomment_views,
+    loandislike_views,
+    loanlike_views,
+    public_loan_views
 
 )
 from django.conf.urls import include, url
@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^publicloan/(?P<id>[0-9]+)', public_loan_views.PublicLoanDetailAPIView.as_view()),
     url(r'^publicloan/add/', public_loan_views.PublicLoanAddAPIView.as_view()),
     url(r'^publicloan/update/(?P<id>[0-9]+)', public_loan_views.PublicLoanUpdateAPIView.as_view()),
-    url(r'^publicloan/delete/(?P<id>[0-9]+)', public_loan_views.PublicLoanDeleteAPIView.as_view()),
+    #url(r'^publicloan/delete/(?P<id>[0-9]+)', public_loan_views.PublicLoanDeleteAPIView.as_view()), #DO NOT ALLOW TO DELETE PUBLIC LOANS
 
     # LOAN COMMENTS #
     url(r'^loancomments/loan/(?P<loan>[0-9]+)/comments/', loancomment_views.LoanCommentListView.as_view()),
@@ -70,49 +70,32 @@ urlpatterns = [
     # LOAN VOTE(PUBLIC)#
     # url(r'^loanvotes/loan/(?P<loan_id>[0-9]+)/vote/user/(?P<lender_id>[0-9]+)', loanvote_views.LoanVoteByLenderAPIView.as_view()), # TODO : not implemented yet.
 
-    # LENDER #
-    url(r'^lenders/', lender_views.LenderListView.as_view()),
-    url(r'^lender/(?P<id>[0-9]+)', lender_views.LenderDetailAPIView.as_view()),
-    url(r'^lender/add/', lender_views.LenderAddAPIView.as_view()),
-    url(r'^lender/update/(?P<id>[0-9]+)', lender_views.LenderUpdateAPIView.as_view()),
-    url(r'^lender/delete/(?P<id>[0-9]+)', lender_views.LenderDeleteAPIView.as_view()),
-    url(r'^lender/(?P<lender_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', lender_views.LenderByEmailAPIView.as_view()),
-
     # LENDER LOG #
-    url(r'^lenderlogs/lender/(?P<lender>[0-9]+)/logs/', lenderlog_views.LenderLogListView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[0-9]+)/log/(?P<id>[0-9]+)', lenderlog_views.LenderLogDetailAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[0-9]+)/log/add/', lenderlog_views.LenderLogAddAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/update/(?P<id>[0-9]+)', lenderlog_views.LenderLogUpdateAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender_fk>[0-9]+)/log/delete/(?P<id>[0-9]+)', lenderlog_views.LenderLogDeleteAPIView.as_view()),
+    url(r'^lenderlogs/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/logs/', lenderlog_views.LenderLogListView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/(?P<id>[0-9]+)', lenderlog_views.LenderLogDetailAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/add/(?P<id>[0-9]+)', lenderlog_views.LenderLogAddAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/update/(?P<id>[0-9]+)', lenderlog_views.LenderLogUpdateAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/delete/(?P<id>[0-9]+)', lenderlog_views.LenderLogDeleteAPIView.as_view()),
 
 
-    # LENDER GIVEN LOANS #
-    url(r'^lendergivenloans/lender/(?P<lender>[0-9]+)/givenloans/', lendergivenloan_views.LenderGivenLoanListView.as_view()),
-
-    # LENDER TAKEN LOANS #
-    url(r'^lendertakenloans/lender/(?P<lender>[0-9]+)/takenloans/', lendertakenloan_views.LenderTakenLoanListView.as_view()),
 
     # LENDER LOAN #
 
-    # DIFFERS FOR DISPLAYING AND ADDING DATA #
-    url(r'^lenderloans/lender/(?P<lender>[0-9]+)/loans/', lenderloan_views.LendersLoansList.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[0-9]+)/loan/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDetailAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[0-9]+)/loan/add/', lenderloan_views.LenderLoanAddAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[0-9]+)/loan/update/(?P<id>[0-9]+)', lenderloan_views.LenderLoanUpdateAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[0-9]+)/loan/delete/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDeleteAPIView.as_view()),
-
-    # SEARCH LENDER LOAN BY EMAIL #
-    url(r'^searchlenderloanbyemail/lender/(?P<lender>[0-9]+)/loan/(?P<loan>[0-9]+)/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
-        lenderloan_views.LenderLoansListViewSearchByEmail.as_view()), #not working #TODO: not implemented yet.
+    url(r'^lenderloans/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/', lenderloan_views.LendersLoansList.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDetailAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/add/', lenderloan_views.LenderLoanAddAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/update/(?P<id>[0-9]+)', lenderloan_views.LenderLoanUpdateAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/delete/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDeleteAPIView.as_view()),
+    # SEARCH LENDER LOAN BY BORROWER EMAIL #
+    url(r'^searchborrowerloanbyemail/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
+        lenderloan_views.LenderLoansListViewSearchByEmail.as_view()), #not working #TODO: not implemented yet
 
 
+    url(r'^borrowerloans/borrower/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/', borrowerloan_views.BorrowerLoansList.as_view()),
 
-    # BORROWER #
-    url(r'^borrowers/', borrower_views.BorrowerListView.as_view()),
-    url(r'^borrower/add/', borrower_views.BorrowerAddAPIView.as_view()),
-    url(r'^borrower/(?P<id>[0-9]+)', borrower_views.BorrowerDetailAPIView.as_view()),
-    url(r'^borrower/update/(?P<id>[0-9]+)', borrower_views.BorrowerUpdateAPIView.as_view()),
-    url(r'^borrower/delete/(?P<id>[0-9]+)', borrower_views.BorrowerDeleteAPIView.as_view()),
+
+    #url(r'^lenderandborrower/add/', lender_and_borrower_view.LenderAndBorrowerAddView.as_view()),
+
 
     # COMMENTS # (TODO: implement)
     #url(r'^lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loancomments/loan/(?P<loan_fk>[0-9]+)', views.CommentListView.as_view()),

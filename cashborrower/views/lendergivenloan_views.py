@@ -1,24 +1,9 @@
-from django.shortcuts import render
-from django.db.models import Empty
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from cashborrower.models import Lender, Loan, Borrower
-from rest_framework.settings import api_settings
-from rest_framework import generics
+
+from cashborrower.models import  Loan
 from rest_framework.pagination import(
-    LimitOffsetPagination,
     PageNumberPagination
 )
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView
-)
-from rest_framework import generics, permissions
-from itertools import chain
+from rest_framework import generics
 from cashborrower.serializers import lender_given_loan_serialisers
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -36,4 +21,4 @@ class LenderGivenLoanListView(generics.ListAPIView):
 
     def get_queryset(self):
         lender = self.kwargs['lender']
-        return Loan.objects.filter(lender=lender).filter(isGivenLoan=True).order_by('-id')
+        return Loan.objects.filter(lender=lender).order_by('-id')

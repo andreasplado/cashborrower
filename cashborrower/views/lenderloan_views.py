@@ -1,21 +1,8 @@
-from django.shortcuts import render
-from django.db.models import Empty
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from ..models import Lender, Loan, Borrower
-from rest_framework.settings import api_settings
-from rest_framework import generics
+
+from rest_framework import mixins
+from ..models import Loan
 from rest_framework.pagination import(
-    LimitOffsetPagination,
     PageNumberPagination
-)
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView
 )
 from rest_framework import generics, permissions
 from itertools import chain
@@ -30,8 +17,8 @@ class StandardResultsSetPagination(PageNumberPagination):
 ## Lender loan views ##
 #######################
 
-class LenderLoanAddAPIView(generics.ListCreateAPIView):
-    serializer_class = lenderloan_serializers.LenderLoanSerializer
+class LenderLoanAddAPIView(generics.CreateAPIView):
+    serializer_class = lenderloan_serializers.AddLenderLoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
@@ -39,7 +26,7 @@ class LenderLoanAddAPIView(generics.ListCreateAPIView):
         return Loan.objects.filter(lender=lender).order_by('-id')
 
 class LendersLoansList(generics.ListAPIView):
-    serializer_class = lenderloan_serializers.AddLenderLoanSerializer
+    serializer_class = lenderloan_serializers.LenderLoanSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
@@ -71,18 +58,8 @@ class LenderLoansListViewSearchByEmail(generics.ListCreateAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        lender = self.kwargs['lender']
-        borrower_email = self.kwargs['borrower_email']
         loan = self.kwargs['loan']
 
-        
         # INNER JOIN
-        lenderQuery = Lender.objects.filter(id=lender).order_by('-id')
-        borrowerEmailQuery = Borrower.objects.filter(email=borrower_email)
-        loanQuery = Loan.objects.filter(id=loan)
-        
-        innerjoinQuery = chain(lenderQuery, loanQuery, borrowerEmailQuery)
-        if not borrowerEmailQuery or not lenderQuery or not loanQuery:
-            return list()
-        else:
-            return list(innerjoinQuery)
+        loanQuery = Loan.objects.filter(email=loan)
+        return loanQuery

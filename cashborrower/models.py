@@ -6,22 +6,13 @@ from datetime import datetime
 
 # Create your models here.
 
-
-class Lender(models.Model):
-    email = models.CharField(max_length=100)
-
-class Borrower(models.Model):
-    email = models.CharField(max_length=100)
-
 class Loan(models.Model):
-    lender = models.ForeignKey(Lender)
-    borrower = models.ForeignKey(Borrower)
+    lender = models.CharField(max_length=255)
+    borrower = models.CharField(max_length=255)
     amount = models.FloatField(default=0.0)
     notes = models.CharField(max_length=255,blank=True)
     deadline = models.DateTimeField(blank=True, null=True)
-    isLoanReturned = models.BooleanField(default=False)
     isLoanPrivate = models.BooleanField(default=False)
-    isGivenLoan = models.BooleanField(default=True)
 
 class LoanLike(models.Model):
     loan = models.ForeignKey(Loan)
@@ -37,12 +28,16 @@ class LoanComment(models.Model):
     commenter = models.CharField(max_length=100)
 
 class LoanCommentLike(models.Model):
-    comment = models.ForeignKey(LoanComment)
-    isLiked = models.BooleanField(default=False)
+    loancomment = models.ForeignKey(LoanComment)
+    liker = models.CharField(max_length=255)
+
+class LoanCommentDislike(models.Model):
+    loancomment = models.ForeignKey(LoanComment)
+    disliker = models.CharField(max_length=255)
 
 class Log(models.Model):
-    lender = models.ForeignKey(Lender)
-    borrower = models.ForeignKey(Borrower)
+    lender = models.CharField(max_length=255)
+    borrower = models.CharField(max_length=255)
     loan = models.ForeignKey(Loan)
 
 

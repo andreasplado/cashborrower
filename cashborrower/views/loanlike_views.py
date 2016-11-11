@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ..models import Loan, Lender, LoanLike
+from ..models import Loan, LoanLike
 from rest_framework.settings import api_settings
 from rest_framework import generics
 from rest_framework.pagination import(
@@ -74,8 +74,6 @@ class LoanVoteByLenderAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         lender_id = self.kwargs['lender_id']
         loan_id = self.kwargs['loan_id']
-        lender = Lender.objects.filter(id=lender_id)
         loan = Loan.objects.filter(id=loan_id).order_by('-id')
-        innerjoinQuery = chain(lender, loan)
         
-        return list(innerjoinQuery)
+        return loan
