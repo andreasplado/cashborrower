@@ -10,5 +10,5 @@ class LogSerializer(serializers.ModelSerializer):
     loan = LoanSerializer(many=False)
     class Meta:
         model = Log
-        fields =('lender', 'borrower', 'loan')
+        fields =('lender', 'borrower', 'loan', 'isLoanReturned')
         #fields = '__all__'

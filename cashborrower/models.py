@@ -38,6 +38,7 @@ class LoanCommentDislike(models.Model):
 class Log(models.Model):
     lender = models.CharField(max_length=255)
     borrower = models.CharField(max_length=255)
+    isLoanReturned = models.BooleanField(default=False)
     loan = models.ForeignKey(Loan)
 
 
