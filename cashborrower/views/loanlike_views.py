@@ -47,6 +47,15 @@ class LoanLikeDetailAPIView(generics.RetrieveAPIView):
         loan = self.kwargs['loan']
         return LoanLike.objects.filter(id=id).filter(loan=loan).order_by('-id')
 
+class LoanLikeByEmailDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = loanlike_serializers.LoanLikesSerializer
+    lookup_field = 'liker'
+
+    def get_queryset(self):
+        liker = self.kwargs['liker']
+        loan = self.kwargs['loan']
+        return LoanLike.objects.filter(liker=liker).filter(loan=loan).order_by('-id')
+
 
 class LoanLikeAddAPIView(generics.CreateAPIView):
     serializer_class = loanlike_serializers.LoanLikesSerializer
