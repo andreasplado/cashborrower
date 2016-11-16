@@ -25,13 +25,18 @@ class StandardResultsSetPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
+class MaxResultsSetPagination(PageNumberPagination):
+    page_size = 30
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
 #####################
 ## Loan votes view ##
 #####################
 
 class LoanLikeListView(generics.ListAPIView):
     serializer_class = loanlike_serializers.LoanLikesSerializer
-    pagination_class = StandardResultsSetPagination
+    pagination_class = MaxResultsSetPagination
     
     def get_queryset(self):
         loan = self.kwargs['loan']
