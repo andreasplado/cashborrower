@@ -26,7 +26,7 @@ class UserDetailAPIView(generics.RetrieveAPIView):
     serializer_class = user_serializers.UserSerializer
     lookup_field = 'id'
 
-class UserAddAPIView(generics.CreateAPIView):
+class UserAddAPIView(generics.GenericAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
