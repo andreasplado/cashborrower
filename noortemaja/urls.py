@@ -43,7 +43,7 @@ urlpatterns = [
     # USERS #
     url(r'^users/', user_views.UserListView.as_view()),
     url(r'^user/(?P<id>[0-9]+)', user_views.UserDetailAPIView.as_view()),
-    url(r'^user/add/', user_views.UserAddAPIView),
+    url(r'^user/add/', user_views.UserAddAPIView.as_view()),
     url(r'^user/update/(?P<id>[0-9]+)', user_views.UserUpdateAPIView.as_view()),
     url(r'^user/delete/(?P<id>[0-9]+)', user_views.UserDeleteAPIView.as_view()),
 
