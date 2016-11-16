@@ -26,6 +26,15 @@ class UserDetailAPIView(generics.RetrieveAPIView):
     serializer_class = user_serializers.UserSerializer
     lookup_field = 'id'
 
+
+class UserByEmailDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = user_serializers.UserSerializer
+    lookup_field = 'liker'
+
+    def get_queryset(self):
+        gmail = self.kwargs['gmail']
+        return User.objects.filter(gmail=gmail).order_by('-id')
+
 class UserAddAPIView(generics.CreateAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
