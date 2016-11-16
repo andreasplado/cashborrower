@@ -41,6 +41,10 @@ class Log(models.Model):
     isLoanReturned = models.BooleanField(default=False)
     loan = models.ForeignKey(Loan)
 
-
+class User(models.Model):
+    gmail = models.CharField(max_length=255)
+    fullName = models.CharField(max_length=255)
+    imagePath = models.CharField(max_length=300)
+    rating = models.IntegerField
 
 

@@ -32,11 +32,20 @@ from cashborrower.views import(
 )
 from django.conf.urls import include, url
 
+from cashborrower.views import user_views
+
 admin.autodiscover()
 urlpatterns = [
 
     # ADMIN #
     url(r'^admin/', admin.site.urls),
+
+    # USERS #
+    url(r'^users/', user_views.UserListView.as_view()),
+    url(r'^user/(?P<id>[0-9]+)', user_views.UserDetailAPIView.as_view()),
+    url(r'^user/add/', user_views.UserAddAPIView.as_view()),
+    url(r'^user/update/(?P<id>[0-9]+)', user_views.UserUpdateAPIView.as_view()),
+    url(r'^user/delete/(?P<id>[0-9]+)', user_views.UserDeleteAPIView.as_view()),
 
     # PUBLIC LOANS #
     url(r'^publicloans/', public_loan_views.PublicLoanListView.as_view()),
@@ -94,7 +103,6 @@ urlpatterns = [
 
 
     url(r'^borrowerloans/borrower/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/', borrowerloan_views.BorrowerLoansList.as_view()),
-
 
     #url(r'^lenderandborrower/add/', lender_and_borrower_view.LenderAndBorrowerAddView.as_view()),
 
