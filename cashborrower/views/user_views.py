@@ -1,3 +1,5 @@
+from rest_framework import viewsets
+
 from ..models import User
 from rest_framework.pagination import(
     PageNumberPagination
@@ -26,10 +28,13 @@ class UserDetailAPIView(generics.RetrieveAPIView):
     serializer_class = user_serializers.UserSerializer
     lookup_field = 'id'
 
-class UserAddAPIView(generics.CreateAPIView):
+class UserAddAPIView(viewsets.ModelViewSet):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
+    def get_object(self):
+        if self.request.method == 'PUT':
+            obj, created = User.objects.get_or_create(gmail=self.kwargs.get('gmail'))
 
 
 class UserUpdateAPIView(generics.UpdateAPIView):
