@@ -35,6 +35,8 @@ class UserAddAPIView(viewsets.ModelViewSet):
     def get_object(self):
         if self.request.method == 'PUT':
             obj, created = User.objects.get_or_create(gmail=self.kwargs.get('gmail'))
+        if self.request.method == 'GET':
+            obj, created = User.objects.get(gmail=self.kwargs.get('gmail'))
 
 
 class UserUpdateAPIView(generics.UpdateAPIView):
