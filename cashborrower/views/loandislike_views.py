@@ -59,10 +59,20 @@ class LoanDislikeAddAPIView(generics.CreateAPIView):
 
 class LoanDislikeUpdateAPIView(generics.UpdateAPIView):
     queryset = LoanLike.objects.all()
-    serializer_class = loanlike_serializers.LoanLikesSerializer
+    serializer_class = loandislike_serializers.LoanDisLikesSerializer
     lookup_field = 'id'
 
 class LoanDislikeDeleteAPIView(generics.DestroyAPIView):
     queryset = LoanLike.objects.all()
-    serializer_class = loanlike_serializers.LoanLikesSerializer
+    serializer_class = loandislike_serializers.LoanDisLikesSerializer
     lookup_field = 'id'
+
+
+class LoanDislikeByEmailAPIView(generics.RetrieveAPIView):
+    serializer_class = loandislike_serializers.LoanDisLikesSerializer
+    lookup_field = 'disliker'
+
+    def get_queryset(self):
+        disliker = self.kwargs['disliker']
+        loan = self.kwargs['loan']
+        return LoanDislike.objects.filter(disliker=disliker).filter(loan=loan).order_by('-id')

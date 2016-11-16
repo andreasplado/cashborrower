@@ -64,6 +64,7 @@ urlpatterns = [
     # LOAN DISLIKES #
     url(r'^loandislikes/loan/(?P<loan>[0-9]+)/dislikes/', loandislike_views.LoanDislikeListView.as_view()),
     url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/(?P<id>[0-9]+)',loandislike_views.LoanDislikeDetailAPIView.as_view()),
+    url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/(?P<disliker>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', loandislike_views.LoanDislikeByEmailAPIView.as_view()),
     url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/add/', loandislike_views.LoanDislikeAddAPIView.as_view()),
     url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/update/(?P<id>[0-9]+)', loandislike_views.LoanDislikeUpdateAPIView.as_view()),
     url(r'^loandislike/loan/(?P<loan>[0-9]+)/dislike/delete/(?P<id>[0-9]+)', loandislike_views.LoanDislikeDeleteAPIView.as_view()),
