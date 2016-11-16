@@ -29,7 +29,7 @@ class UserDetailAPIView(generics.RetrieveAPIView):
 
 class UserByEmailDetailAPIView(generics.RetrieveAPIView):
     serializer_class = user_serializers.UserSerializer
-    lookup_field = 'liker'
+    lookup_field = 'gmail'
 
     def get_queryset(self):
         gmail = self.kwargs['gmail']
