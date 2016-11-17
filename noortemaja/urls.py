@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^user/(?P<id>[0-9]+)', user_views.UserDetailAPIView.as_view()),
     url(r'^user/(?P<gmail>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', user_views.UserByEmailDetailAPIView.as_view()),
     url(r'^user/add/', user_views.UserAddAPIView.as_view()),
+    url(r'^user/addvote/', user_views.UserAddVoteAPIView.as_view()),
     url(r'^user/update/(?P<id>[0-9]+)', user_views.UserUpdateAPIView.as_view()),
     url(r'^user/delete/(?P<id>[0-9]+)', user_views.UserDeleteAPIView.as_view()),
 

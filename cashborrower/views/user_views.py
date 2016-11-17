@@ -40,6 +40,11 @@ class UserAddAPIView(generics.CreateAPIView):
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
 
+class UserAddVoteAPIView(generics.UpdateAPIView):
+    queryset = User.objects.order_by('-id')
+    serializer_class = user_serializers.UserSerializer
+    pagination_class = StandardResultsSetPagination
+
 
 class UserUpdateAPIView(generics.UpdateAPIView):
     queryset = User.objects.order_by('-id')

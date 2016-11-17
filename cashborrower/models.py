@@ -11,7 +11,8 @@ class Loan(models.Model):
     borrower = models.CharField(max_length=255)
     amount = models.FloatField(default=0.0)
     notes = models.CharField(max_length=255,blank=True)
-    deadline = models.DateTimeField(blank=True, null=True)
+    loanAdded = models.DateField(blank=True, null=True)
+    deadline = models.DateField(blank=True, null=True)
     isLoanPrivate = models.BooleanField(default=False)
 
 class LoanLike(models.Model):
