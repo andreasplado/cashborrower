@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework.authtoken import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from cashborrower.views import(
@@ -39,6 +40,8 @@ urlpatterns = [
 
     # ADMIN #
     url(r'^admin/', admin.site.urls),
+
+    url(r'^api-token-auth/', views.obtain_auth_token),
 
     # USERS #
     url(r'^users/', user_views.UserListView.as_view()),
