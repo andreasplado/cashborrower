@@ -15,14 +15,14 @@ class LenderLoanSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Loan
-        fields =('id','lender','borrower', 'amount','notes','loanAdded','deadline', 'isLoanPrivate',
+        fields =('id','lender','borrower', 'amount','notes','loanAdded','deadline', 'isLoanPrivate', 'interest', 'interestInterval',
                  'loanLikeCount', 'loanDislikeCount')
 
 
 class AddLenderLoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
-        fields = ('lender','borrower', 'amount','notes','loanAdded','deadline', 'isLoanPrivate')
+        fields = ('lender','borrower', 'amount','notes','loanAdded','deadline', 'isLoanPrivate', 'interest', 'interestInterval')
 
 
 
@@ -31,5 +31,5 @@ class LenderLoanByEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields =('lender', 'borrower','amount','notes','loanAdded','deadline',
-        'isLoanReturned', 'isLoanPrivate')
+        'isLoanReturned', 'isLoanPrivate', 'interest', 'interestInterval')
         #fields = '__all__'

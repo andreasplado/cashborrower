@@ -5,4 +5,4 @@ class LenderGivenLoanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Loan
-        fields =('id','lender','borrower', 'amount','notes','deadline', 'isLoanPrivate')
+        fields =('id','lender','borrower', 'amount','notes','deadline', 'isLoanPrivate', 'interest', 'interestInterval')
