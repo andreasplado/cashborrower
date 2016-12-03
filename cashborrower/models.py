@@ -26,7 +26,7 @@ class Loan(models.Model):
     loanAdded = models.DateField(blank=True, null=True)
     deadline = models.DateField(blank=True, null=True)
     isLoanPrivate = models.BooleanField(default=False)
-    interest = models.IntegerField(default=0)
+    interest = models.FloatField(default=0.0)
     interestInterval = models.CharField(max_length=5)
 
 class LoanLike(models.Model):
