@@ -1,6 +1,6 @@
 from time import perf_counter
 
-from ..models import User
+from django.contrib.auth.models import User
 from rest_framework.pagination import(
     PageNumberPagination
 )
@@ -22,12 +22,14 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
+    permission_classes = (permissions.AllowAny,)
 
 
 class UserDetailAPIView(generics.RetrieveAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     lookup_field = 'id'
+    permission_classes = (permissions.AllowAny,)
 
 
 class UserByEmailDetailAPIView(generics.RetrieveAPIView):
@@ -38,8 +40,9 @@ class UserByEmailDetailAPIView(generics.RetrieveAPIView):
         gmail = self.kwargs['gmail']
         return User.objects.filter(gmail=gmail).order_by('-id')
 
+    permission_classes = (permissions.AllowAny,)
+
 class UserAddAPIView(generics.CreateAPIView):
-    queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
     permission_classes = (permissions.AllowAny,)
