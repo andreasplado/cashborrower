@@ -1,6 +1,6 @@
-# noortemaja
+# Cashborrower
 
-#### Event handling system for noortemaja.
+#### Event handling system for cashborrower.
 
 This site is made in python for educational purpouses.
 
