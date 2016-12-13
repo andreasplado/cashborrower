@@ -1,3 +1,5 @@
+from time import perf_counter
+
 from ..models import User
 from rest_framework.pagination import(
     PageNumberPagination
@@ -5,6 +7,7 @@ from rest_framework.pagination import(
 
 from rest_framework import generics
 from ..serializers import user_serializers
+from rest_framework import permissions
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -39,6 +42,7 @@ class UserAddAPIView(generics.CreateAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
+    permission_classes = (permissions.AllowAny,)
 
 class UserAddVoteAPIView(generics.UpdateAPIView):
     queryset = User.objects.order_by('-id')

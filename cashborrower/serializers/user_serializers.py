@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from ..models import Loan, User
 
@@ -5,15 +6,23 @@ from ..models import Loan, User
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
-        fields = '__all__'
+        model = get_user_model()
+        fields = (
+            'id',
+            'username',
+            'password',
+            'email'
+        )
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
 
     def create(self, validated_data):
-        gmail= validated_data.get('gmail', None)
-        if gmail is not None:
-            user = User.objects.filter(gmail=gmail).first()
-            if user is not None:
-                return user
-
-        user = User.objects.create(**validated_data)
+        user = get_user_model().objects.create_user(**validated_data)
         return user
+
+    def update(self, instance, validated_data):
+        if 'password' in validated_data:
+            password = validated_data.pop('password')
+            instance.set_password(password)
+        return super(UserSerializer, self).update(instance, validated_data)
