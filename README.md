@@ -1,6 +1,6 @@
 # Cashborrower
 
-#### Event handling system for cashborrower.
+#### Cash borrowing system - CashBorrower.
 
 This site is made in python for educational purpouses.
 
