@@ -47,11 +47,13 @@ class UserAddAPIView(generics.CreateAPIView):
     pagination_class = StandardResultsSetPagination
     permission_classes = (permissions.AllowAny,)
 
-class UserExistsAPIView(generics.RetrieveAPIView):
-    queryset = User.objects.order_by('-id')
+class UserExistsAPIView(generics.ListAPIView):
     serializer_class = user_serializers.UserSerializer
     pagination_class = StandardResultsSetPagination
     permission_classes = (permissions.AllowAny,)
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return User.objects.filter(username=username).order_by('-id')
 
 class UserAddVoteAPIView(generics.UpdateAPIView):
     queryset = User.objects.order_by('-id')
