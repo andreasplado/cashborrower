@@ -47,6 +47,11 @@ class UserAddAPIView(generics.CreateAPIView):
     pagination_class = StandardResultsSetPagination
     permission_classes = (permissions.AllowAny,)
 
+class UserExistsAPIView(generics.RetrieveAPIView):
+    serializer_class = user_serializers.UserSerializer
+    pagination_class = StandardResultsSetPagination
+    permission_classes = (permissions.AllowAny,)
+
 class UserAddVoteAPIView(generics.UpdateAPIView):
     queryset = User.objects.order_by('-id')
     serializer_class = user_serializers.UserSerializer
