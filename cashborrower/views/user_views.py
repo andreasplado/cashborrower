@@ -53,7 +53,9 @@ class UserExistsAPIView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
     def get_queryset(self):
         username = self.kwargs['username']
-        return User.objects.filter(username=username).order_by('-id')
+        email = self.kwargs['email']
+
+        return User.objects.filter(email=email).filter(username=username).order_by('-id')
 
 class UserAddVoteAPIView(generics.UpdateAPIView):
     queryset = User.objects.order_by('-id')
