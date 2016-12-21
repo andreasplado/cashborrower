@@ -8,7 +8,7 @@ You can write whatever endpoint to this allication.
 
 
 ### Available endpoints:
--^admin/
+*^admin/
 -^api-token-auth/
 -^users/
 -^user/(?P<id>[0-9]+)
