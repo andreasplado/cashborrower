@@ -1,11 +1,17 @@
 # Cashborrower
 
-#### Cash borrowing system - CashBorrower.
+### Cash borrowing system - CashBorrower.
 
 This site is made in python for educational purpouses.
 This site is offering REST application endpoints for for money lending system.
 You can write whatever endpoint to this allication.
+Wherever you use this site, you got domain name.
+After domain name you have specified urls which are described as endpoint url in this REST implementation.
+So the site that has available endpoint <b>^admin/</b> for example you have this kind of url: <b>www.domainame.com/admin</b>
+This leads to the admin panel of that djangorestframework.
 
+#### Admin panel looks like this in this current program
+<img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
 
 ### Available endpoints:
 ```
@@ -53,3 +59,5 @@ You can write whatever endpoint to this allication.
   ^searchborrowerloanbyemail/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})
   ^borrowerloans/borrower/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/
 ```
+
+
