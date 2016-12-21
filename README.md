@@ -13,7 +13,7 @@ This leads to the admin panel of that djangorestframework.
 #### Admin panel looks like this in this current program
 <img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
 
-### Available endpoints:
+#### Available endpoints:
 ```
   ^admin/
   ^api-token-auth/
@@ -60,4 +60,9 @@ This leads to the admin panel of that djangorestframework.
   ^borrowerloans/borrower/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/
 ```
 
-
+You can edit update and delete files.
+Database is using SQLite.
+You can use DBBrowser for SQLite for browsing data: http://sqlitebrowser.org/
+Most of the endpoints have authorized access.
+You need to recive token from the user. Every registred user have unique token inside database.
+Token will  be given to the header to get authorized access for the endpoint
