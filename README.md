@@ -66,3 +66,6 @@ You can use DBBrowser for SQLite for browsing data: http://sqlitebrowser.org/
 Most of the endpoints have authorized access.
 You need to recive token from the user. Every registred user have unique token inside database.
 Token will  be given to the header to get authorized access for the endpoint
+
+For unauthorized access of this kind of url [domain_name]/loanlikes/loan/18/likes/ you will not recive JSON about loan likes rather you recive message about unauthorized access and will also get HTTP 401 error - unauthorized
+<img src="http://phonewe.freeiz.com/loanlikelist.png"/>
