@@ -71,5 +71,5 @@ For unauthorized access of this kind of url [domain_name]/loanlikes/loan/18/like
 <img src="http://phonewe.freeiz.com/loanlikelist.png"/>
 
 To get non-fancy palin JSON format of data from the endpoint you will add trailing slash ath the end of the url with an extra data:
-``` /?format=json```
+``` /?format=json
 
