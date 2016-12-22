@@ -10,6 +10,9 @@ After domain name you have specified urls which are described as endpoint url in
 So the site that has available endpoint admin for example you have this kind of url: <b>[domainame]/admin</b>
 This leads to the admin panel of that djangorestframework.
 
+### ERD
+<img src="http://phonewe.freeiz.com/cash.png" />
+
 #### Admin panel looks like this in this current program
 <img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
 
