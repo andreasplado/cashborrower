@@ -14,51 +14,50 @@ This leads to the admin panel of that djangorestframework.
 <img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
 
 #### Available endpoints:
-```
-  admin/
-  api-token-auth/
-  users/
-  user/<id>
-  user/<user@email.com>
-  user/add/
-  username/exists/<username>
-  user/addvote/
-  user/update/<id>
-  user/delete/<id>
-  publicloans/
-  publicloan/<id>
-  publicloan/add/
-  publicloan/update/<id>
-  loancomments/loan/<id>/comments/
-  loancomment/loan/<loan_id>/comment/<id>
-  loancomment/loan/<loan_id>/comment/add/
-  loancomment/loan/<loan_id>/comment/update/<id>
-  loancomment/loan/<loan_id>/comment/delete/<id>
-  loanlikes/loan/<loan_id>/likes/
-  loanlike/loan/<loan_id>/like/<id>
-  loanlike/loan/<loan_id>/like/(?P<liker>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})
-  loanlike/loan/<loan_id>/like/add/
-  loanlike/loan/<loan_id>/like/update/<id>
-  loanlike/loan/<loan_id>/like/delete/<id>
-  loandislikes/loan/<loan_id>/dislikes/
-  loandislike/loan/<loan_id>/dislike/<id>
-  loandislike/loan/<loan_id>/dislike/(?P<disliker>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})
-  loandislike/loan/<loan_id>/dislike/add/
-  loandislike/loan/<loan_id>/dislike/update/<id>
-  loandislike/loan/<loan_id>/dislike/delete/<id>
-  lenderlogs/lender/<lender@email.com>/logs/
-  lenderlog/lender/<lender@email.com>/log/<id>
-  lenderlog/lender/<lender@email.com>/log/add/<id>
-  lenderlog/lender/<lender@email.com>/log/update/<id>
-  lenderlog/lender/<lender@email.com>/log/delete/<id>
-  lenderloans/lender/<lender@email.com>/loans/
-  lenderloan/lender/<lender@email.com>/loan/<id>
-  lenderloan/lender/<lender@email.com>/loan/add/
-  lenderloan/lender/<lender@email.com>/loan/update/<id>
-  lenderloan/lender/<lender@email.com>/loan/delete/<id>
-  searchborrowerloanbyemail/email/<borrower@email.com>
-  borrowerloans/borrower/<borrower@email.com>/loans/
-```
+
+* admin/
+* api-token-auth/
+* users/
+* user/<id>
+* user/<user@email.com>
+* user/add/
+* username/exists/<username>
+* user/addvote/
+* user/update/<id>
+* user/delete/<id>
+* publicloans/
+* publicloan/<id>
+* publicloan/add/
+* publicloan/update/<id>
+* loancomments/loan/<id>/comments/
+* loancomment/loan/<loan_id>/comment/<id>
+* loancomment/loan/<loan_id>/comment/add/
+* loancomment/loan/<loan_id>/comment/update/<id>
+* loancomment/loan/<loan_id>/comment/delete/<id>
+* loanlikes/loan/<loan_id>/likes/
+* loanlike/loan/<loan_id>/like/<id>
+* loanlike/loan/<loan_id>/like/(?P<liker>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})
+* loanlike/loan/<loan_id>/like/add/
+* loanlike/loan/<loan_id>/like/update/<id>
+* loanlike/loan/<loan_id>/like/delete/<id>
+* loandislikes/loan/<loan_id>/dislikes/
+* loandislike/loan/<loan_id>/dislike/<id>
+* loandislike/loan/<loan_id>/dislike/(?P<disliker>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})
+* loandislike/loan/<loan_id>/dislike/add/
+* loandislike/loan/<loan_id>/dislike/update/<id>
+* loandislike/loan/<loan_id>/dislike/delete/<id>
+* lenderlogs/lender/<lender@email.com>/logs/
+* lenderlog/lender/<lender@email.com>/log/<id>
+* lenderlog/lender/<lender@email.com>/log/add/<id>
+* lenderlog/lender/<lender@email.com>/log/update/<id>
+* lenderlog/lender/<lender@email.com>/log/delete/<id>
+* lenderloans/lender/<lender@email.com>/loans/
+* lenderloan/lender/<lender@email.com>/loan/<id>
+* lenderloan/lender/<lender@email.com>/loan/add/
+* lenderloan/lender/<lender@email.com>/loan/update/<id>
+* lenderloan/lender/<lender@email.com>/loan/delete/<id>
+* searchborrowerloanbyemail/email/<borrower@email.com>
+* borrowerloans/borrower/<borrower@email.com>/loans/
 
 You can edit update and delete files.
 Database is using SQLite.
