@@ -7,7 +7,7 @@ This site is offering REST application endpoints for for money lending system.
 You can write whatever endpoint to this allication.
 Wherever you use this site, you got domain name.
 After domain name you have specified urls which are described as endpoint url in this REST implementation.
-So the site that has available endpoint <b>^admin/</b> for example you have this kind of url: <b>[domainame]/admin</b>
+So the site that has available endpoint admin for example you have this kind of url: <b>[domainame]/admin</b>
 This leads to the admin panel of that djangorestframework.
 
 #### Admin panel looks like this in this current program
