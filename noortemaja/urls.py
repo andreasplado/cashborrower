@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^user/(?P<gmail>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', user_views.UserByEmailDetailAPIView.as_view()),
     url(r'^user/add/', user_views.UserAddAPIView.as_view()),
     url(r'^username/exists/(?P<username>[^/]+)', user_views.UserExistsAPIView.as_view()),
+    url(r'email/exists/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', user_views.EmailExistsAPIView.as_view()),
     url(r'^user/addvote/', user_views.UserAddVoteAPIView.as_view()),
     url(r'^user/update/(?P<id>[0-9]+)', user_views.UserUpdateAPIView.as_view()),
     url(r'^user/delete/(?P<id>[0-9]+)', user_views.UserDeleteAPIView.as_view()),
@@ -88,27 +89,27 @@ urlpatterns = [
     # url(r'^loanvotes/loan/(?P<loan_id>[0-9]+)/vote/user/(?P<lender_id>[0-9]+)', loanvote_views.LoanVoteByLenderAPIView.as_view()), # TODO : not implemented yet.
 
     # LENDER LOG #
-    url(r'^lenderlogs/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/logs/', lenderlog_views.LenderLogListView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/(?P<id>[0-9]+)', lenderlog_views.LenderLogDetailAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/add/(?P<id>[0-9]+)', lenderlog_views.LenderLogAddAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/update/(?P<id>[0-9]+)', lenderlog_views.LenderLogUpdateAPIView.as_view()),
-    url(r'^lenderlog/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/log/delete/(?P<id>[0-9]+)', lenderlog_views.LenderLogDeleteAPIView.as_view()),
+    url(r'^lenderlogs/lender/(?P<lender>[^/]+)/logs/', lenderlog_views.LenderLogListView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[^/]+)/log/(?P<id>[0-9]+)', lenderlog_views.LenderLogDetailAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[^/]+)/log/add/(?P<id>[0-9]+)', lenderlog_views.LenderLogAddAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[^/]+)/log/update/(?P<id>[0-9]+)', lenderlog_views.LenderLogUpdateAPIView.as_view()),
+    url(r'^lenderlog/lender/(?P<lender>[^/]+)/log/delete/(?P<id>[0-9]+)', lenderlog_views.LenderLogDeleteAPIView.as_view()),
 
 
 
     # LENDER LOAN #
 
-    url(r'^lenderloans/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/', lenderloan_views.LendersLoansList.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDetailAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/add/', lenderloan_views.LenderLoanAddAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/update/(?P<id>[0-9]+)', lenderloan_views.LenderLoanUpdateAPIView.as_view()),
-    url(r'^lenderloan/lender/(?P<lender>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loan/delete/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDeleteAPIView.as_view()),
+    url(r'^lenderloans/lender/(?P<lender>[^/]+)/loans/', lenderloan_views.LendersLoansList.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[^/]+)/loan/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDetailAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[^/]+)/loan/add/', lenderloan_views.LenderLoanAddAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[^/]+)/loan/update/(?P<id>[0-9]+)', lenderloan_views.LenderLoanUpdateAPIView.as_view()),
+    url(r'^lenderloan/lender/(?P<lender>[^/]+)/loan/delete/(?P<id>[0-9]+)', lenderloan_views.LenderLoanDeleteAPIView.as_view()),
     # SEARCH LENDER LOAN BY BORROWER EMAIL #
     url(r'^searchborrowerloanbyemail/email/(?P<borrower_email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',
         lenderloan_views.LenderLoansListViewSearchByEmail.as_view()), #not working #TODO: not implemented yet
 
 
-    url(r'^borrowerloans/borrower/(?P<borrower>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/loans/', borrowerloan_views.BorrowerLoansList.as_view()),
+    url(r'^borrowerloans/borrower/(?P<borrower>[^/]+)/loans/', borrowerloan_views.BorrowerLoansList.as_view()),
 
     #url(r'^lenderandborrower/add/', lender_and_borrower_view.LenderAndBorrowerAddView.as_view()),
 
