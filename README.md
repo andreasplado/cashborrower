@@ -1,93 +1,77 @@
 # Cashborrower
 
-#### Cash borrowing system - CashBorrower.
+### Cash borrowing system - CashBorrower.
 
 This site is made in python for educational purpouses.
+This site is offering REST application endpoints for for money lending system.
+You can write whatever endpoint to this allication.
+Wherever you use this site, you got domain name.
+After domain name you have specified urls which are described as endpoint url in this REST implementation.
+So the site that has available endpoint admin for example you have this kind of url: <b>[domainame]/admin</b>
+This leads to the admin panel of that djangorestframework.
 
+### ERD
+<img src="http://phonewe.freeiz.com/cash.png" />
 
+#### Admin panel looks like this in this current program
+<img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
 
+#### Available endpoints:
 
-Main classes:
-* models.py
-* views.py
-* serializers.py
+* admin/
+* api-token-auth/
+* users/
+* user/[id]
+* user/[user_email]
+* user/add/
+* username/exists/[username]
+* user/addvote/
+* user/update/[id]
+* user/delete/[id]
+* publicloans/
+* publicloan/[id]
+* publicloan/add/
+* publicloan/update/[id]
+* loancomments/loan/[id]/comments/
+* loancomment/loan/[loan_id]/comment/[id]
+* loancomment/loan/[loan_id]/comment/add/
+* loancomment/loan/[loan_id]/comment/update/[id]
+* loancomment/loan/[loan_id]/comment/delete/[id]
+* loanlikes/loan/[loan_id]/likes/
+* loanlike/loan/[loan_id]/like/[id]
+* loanlike/loan/[loan_id]/like/[liker_email]
+* loanlike/loan/[loan_id]/like/add/
+* loanlike/loan/[loan_id]/like/update/[id]
+* loanlike/loan/[loan_id]/like/delete/[id]
+* loandislikes/loan/[loan_id]/dislikes/
+* loandislike/loan/[loan_id]/dislike/[id]
+* loandislike/loan/[loan_id]/dislike/[disliker_email]
+* loandislike/loan/[loan_id]/dislike/add/
+* loandislike/loan/[loan_id]/dislike/update/[id]
+* loandislike/loan/[loan_id]/dislike/delete/[id]
+* lenderlogs/lender/[lender_email]/logs/
+* lenderlog/lender/[lender_email]/log/[id]
+* lenderlog/lender/[lender_email]/log/add/[id]
+* lenderlog/lender/[lender_email]/log/update/[id]
+* lenderlog/lender/[lender_email]/log/delete/[id]
+* lenderloans/lender/[lender_email]/loans/
+* lenderloan/lender/[lender_email]/loan/[id]
+* lenderloan/lender/[lender_email]/loan/add/
+* lenderloan/lender/[lender_email]/loan/update/[id]
+* lenderloan/lender/[lender_email]/loan/delete/[id]
+* searchborrowerloanbyemail/email/[borrower_email]
+* borrowerloans/borrower/[borrower_email]/loans/
 
-###How To continue developing
+You can edit update and delete files.
+Database is using SQLite.
+You can use DBBrowser for SQLite for browsing data: http://sqlitebrowser.org/
+Most of the endpoints have authorized access.
+You need to recive token from the user. Every registred user have unique token inside database.
+Token will  be given to the header to get authorized access for the endpoint
 
-First make Make data serializer
+For unauthorized access of this kind of url [domain_name]/loanlikes/loan/18/likes/ you will not recive JSON about loan likes rather you recive message about unauthorized access and will also get HTTP 401 error - unauthorized
+<img src="http://phonewe.freeiz.com/loanlikelist.png"/>
 
-```
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        #fields =('comment')
-        fields = '__all__'
-```
+To get non-fancy palin JSON format of data from the endpoint you will add trailing slash ath the end of the url with an extra data:
+ /?format=json
 
-Then make view. Don't forget to use pagination. It is really important for lazyloading data in my app.
-You can only use Pagination class inside generics.
-
-Example:
-
-```
-class CommentListView(generics.ListCreateAPIView):
-    serializer_class = CommentSerializer
-    pagination_class = StandardResultsSetPagination
-    def get_queryset(self):
-        post_fk = self.kwargs['post_fk']
-        return Comment.objects.filter(loan=loan_fk)
-
-Then path to url-s with foreign key.
-```
-Then add CommentListView inside urls. The view must use .as_view. This way you can call generics view.
-
-```
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-
-    url(r'^loans/$', views.LoanListView.as_view()),
-    url(r'^loan/(?P<id>[0-9]+)', views.LoanDetailAPIView.as_view()),
-    url(r'^loan/update/(?P<id>[0-9]+)/', views.LoanUpdateAPIView.as_view()),
-    url(r'^loan/delete/(?P<id>[0-9]+)', views.LoanDeleteAPIView.as_view()),
-
-    url(r'^loancomments/loan/(?P<loan_fk>[0-9]+)', views.CommentListView.as_view()),
-    url(r'^loancomment/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDetailAPIView.as_view()),
-    url(r'^loancomment/update/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentUpdateAPIView.as_view()),
-    url(r'^loancomment/delete/loan/(?P<loan_fk>[0-9]+)/comment/(?P<id>[0-9]+)', views.CommentDeleteAPIView.as_view()),
-]
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-To refresh the site use pareload in pythoneverywhere console of just click the refresh site button ;)
-
-
-
-###How to refresh site after updates
-
-You need to use https://github.com/ayys/pareload
-
-###How To Use pareload
-
-```
-cd pareload
-./pareload
-
-```
-You can run 
-    ```
-    pa-refresh
-    ``` from anywhere to refresh the webapp
-
-###Need Help?
-To make user for the event handling system please contact with the repository owner andreasplado@gmail.com
