@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Cashborrower{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <script type="text/javascript" src="{% static 'js/controllers/dashboard_controller.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datepicker.css' %}">
+    <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+{% endblock %}
+{% block tabs %}
+    <div class="tabs">
+      <div class="tab tabopen" id="tab_add_loan">
+        Add loan
+      </div>
+      <div class="tab" id="tab_given_loans">
+        Given loans
+      </div>
+      <div class="tab"id="tab_taken_loans">
+        Taken loans
+      </div>
+      <div class="tab" id="tab_public_loans">
+        Public loans
+      </div>
+        <div class="tab" id="tab_my_profile">
+        My profile
+      </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content" class="content" style="margin-top:50px; margin-bottom:50px;">
+    </div>
+{% endblock %}

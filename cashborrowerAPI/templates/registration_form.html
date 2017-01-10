@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}<script type="text/javascript" src="{% static "site/js/controllers/registration_form_controller.js" %}"></script> {% endblock %}
+{% block title %}Cashborrower{% endblock %}
+
+{% block content %}
+<h1>Register</h1>
+    </br>
+    </br>
+    <div class="form-group" style="color: white;">
+        <label for="user">Name:</label>
+        <input type="text" class="form-control" id="txt_username">
+    </div>
+    <div class="form-group" style="color: white;">
+        <input type="password"  class="form-control" id="pw_password" id="pwd">
+    </div>
+    <div class="form-group" style="color: white;">
+        <input type="password"  class="form-control" id="pw_password" id="pwd">
+    </div>
+    <div class="form-group" id="btn_register">
+        <button type="button" class="btn btn-default">Register</button>
+    </div>
+
+{% endblock %}

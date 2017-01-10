@@ -1,0 +1,51 @@
+.content {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#btn-trust{
+}
+#btn-distrust{
+}
+
+.content{
+text-overflow: ellipsis;
+}
+
+@font-face
+{
+font-family: Roboto;
+src: url('http://piruby.com/android/Roboto-Regular.ttf');
+}
+
+.tabs {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width: 100%;
+  height: 50px;
+	z-index: 1000;
+	background-color: #000000;
+  z-index=1;
+}
+
+.tabopen {
+	border-bottom: 5px #3DA0D6 solid;
+	float-top: 8px;
+
+}
+
+.tab {
+  cursor: pointer;
+  font-family: Roboto;
+	float: left;
+	width: 20% !important;
+  padding-top:23px;
+  color: #FFFFFF;
+  text-align: center;
+}
+header{
+    height: auto !important;
+}

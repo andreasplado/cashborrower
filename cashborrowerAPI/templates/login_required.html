@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}<script type="text/javascript" src="{% static 'js/controllers/login_required_controller.js' %}"></script> {% endblock %}
+{% block title %}Cashborrower{% endblock %}
+
+{% block content %}
+<h1>Login required</h1>
+    <br>
+    <br>
+    <div class="form-group" style="color: black;">
+        <input type="text" class="form-control" id="txt_username" placeholder="Username">
+    </div>
+    <div class="form-group" style="color: black;">
+        <input type="password"  class="form-control" id="pw_password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-default" id="btn_register">Register</button>
+        <button type="button" class="btn btn-default" id="btn_login">Login</button>
+    </div>
+
+
+{% endblock %}

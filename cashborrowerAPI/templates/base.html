@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/html">
+<!-- Loads the path to your static files -->
+
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>Cashborrower</title>
+
+    <link rel='stylesheet' type="text/css" href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/toastr.min.css' %}">
+     <script type="text/javascript" src="{% static 'js/toastr.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'js/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <header>
+
+        {% block header %}{% endblock %}
+    </header>
+
+    <section class="instagram-wrap">
+        <div class="container">
+                <div class="col-xs-12">
+
+                    <div class="instagram-content">
+
+                        <h3>Have full control over the loans you give to another person</h3>
+                        <div class="row photos-wrap">
+                        <div id="instafeed">
+                        </div>
+                        <!--<div class="transbox">
+                            {% for loan in loans %}
+                                <p>Lender : {{loan.lender}}</p>
+                                </br>
+                                <p>Borrower : {{loan.borrower}}</p>
+                                </br>
+                                <p>Amount : {{loan.amount}}</p>
+                            {% endfor %}
+                        </div> -->
+                        <!-- The following HTML will be our template inside instafeed -->
+                        <!--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="photo-box">
+                                <div class="image-wrap">
+
+                                    {% load static %}
+                                    <img src="{% static "site/images/test_img.jpg" %}">
+                                    <div class="likes">309 Likes</div>
+                                </div>
+                                <div class="description">
+                                    Fantastic Architecture #architecture #testing
+                                    <div class="date">September 16, 2014</div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    {% block tabs %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </footer>
+    <section class="footer-bottom">
+        2016 &copy; Andreas Plado. All rights reserved.
+    </section>
+   <!--<script type="text/javascript" src="{% static 'assets/js/instafeed.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
