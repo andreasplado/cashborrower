@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cashborrowerAPI',
-    'cashborrower',
     'rest_framework.authtoken',
     'rest_framework',
 ]
