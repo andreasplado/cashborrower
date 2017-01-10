@@ -1,4 +1,4 @@
-#!/home/andreasplado/noortemaja/env/bin/python
+#!/home/andreasplado/cashborrower/env/bin/python
 
 import sys
 import getopt

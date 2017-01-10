@@ -1,5 +1,5 @@
 """
-WSGI config for noortemaja project.
+WSGI config for cashborrower project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
