@@ -41,6 +41,10 @@ $(document).ready(function(){
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
+                    var lol =JSON.stringify(msg);
+                    window.localStorage.setItem('token', lol);
+                    window.localStorage.setItem('username', usernameTxt);
+                    console.log(msg);
                     toastr["success"]("You logged in successfully!");
                    //do something
                    //$(location).attr('href', '/dashboard')

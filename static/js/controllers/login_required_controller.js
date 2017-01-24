@@ -43,6 +43,7 @@ $(document).ready(function(){
                 success: function (msg) {
                     toastr["success"]("You logged in successfully!");
                    //do something
+
                    $(location).attr('href', '/dashboard')
                 },
                 error: function (errormessage) {

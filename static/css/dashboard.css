@@ -14,12 +14,7 @@
 text-overflow: ellipsis;
 }
 
-@font-face
-{
-font-family: Roboto;
-src: url('http://piruby.com/android/Roboto-Regular.ttf');
-}
-
+.topnav  div:hover {background-color: #555;}
 .tabs {
   position:absolute;
   left:0px;
