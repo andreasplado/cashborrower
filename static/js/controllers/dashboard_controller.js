@@ -48,7 +48,7 @@ setInterval(function(){
             break;
     }
     // this will run after every 5 seconds
-}, 5000);
+}, 30000);
 
 
 });
