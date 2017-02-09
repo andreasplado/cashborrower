@@ -9,7 +9,7 @@ var publicLoansCachedData;
 var publicLoansCachedResultsize;
 var tabValue="addValue";
 var tokenObj = JSON.parse(window.localStorage.getItem('token'));
-var token = "Token " + tokenObj['token']
+var token = "Token " + tokenObj['token'];
 var username = window.localStorage.getItem('username');
 
 
