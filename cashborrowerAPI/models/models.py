@@ -28,6 +28,8 @@ class Loan(models.Model):
     isLoanPrivate = models.BooleanField(default=False)
     interest = models.FloatField(default=0.0)
     interestInterval = models.CharField(max_length=5)
+    imageProof = models.ImageField(upload_to='Imageproof', default='Imageproof/None/No-img.jpg', max_length=254)
+
 
 class LoanLike(models.Model):
     loan = models.ForeignKey(Loan)

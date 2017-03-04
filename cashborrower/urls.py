@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-
+from cashborrower.settings import MEDIA_URL, MEDIA_ROOT
 from cashborrowerAPI.views.siteViews.Views_index import ViewIndex
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -23,6 +23,7 @@ from cashborrowerAPI.views.siteViews.Views_login_required import ViewLoginRequir
 from cashborrowerAPI.views.siteViews.Views_register import ViewRegister
 from cashborrowerAPI.views.siteViews.Views_login import auth_and_login, loginview
 from cashborrowerAPI.views.siteViews.Views_logout import ViewLogout
+from django.conf.urls.static import static
 
 admin.autodiscover()
 urlpatterns = [
@@ -40,4 +41,4 @@ urlpatterns = [
     url(r'^signup/', ViewRegister),
     url(r'^logout/', ViewLogout),
 
-]
+]+ static(MEDIA_URL, document_root=MEDIA_ROOT)

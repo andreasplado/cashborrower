@@ -34,11 +34,11 @@ class UserDetailAPIView(generics.RetrieveAPIView):
 
 class UserByEmailDetailAPIView(generics.RetrieveAPIView):
     serializer_class = user_serializers.UserSerializer
-    lookup_field = 'gmail'
+    lookup_field = 'email'
 
     def get_queryset(self):
-        gmail = self.kwargs['gmail']
-        return User.objects.filter(gmail=gmail).order_by('-id')
+        email = self.kwargs['email']
+        return User.objects.filter(email=email).order_by('-id')
 
     permission_classes = (permissions.AllowAny,)
 

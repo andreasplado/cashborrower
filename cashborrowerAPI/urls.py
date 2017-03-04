@@ -1,6 +1,8 @@
+
 from django.conf.urls import url
 from django.contrib import admin
 
+from cashborrower.settings import MEDIA_URL, MEDIA_ROOT
 from cashborrowerAPI.views.APIviews import(
 
     APIviews_borrowerloan,
@@ -16,6 +18,8 @@ from cashborrowerAPI.views.APIviews import APIviews_loandislike
 from django.conf.urls import (
 handler400, handler403, handler404, handler500
 )
+from django.conf.urls.static import static
+from django.conf import settings
 
 admin.autodiscover()
 urlpatterns = [
@@ -23,7 +27,7 @@ urlpatterns = [
     # USERS #
     url(r'^users/', APIviews_user.UserListView.as_view()),
     url(r'^user/(?P<id>[0-9]+)', APIviews_user.UserDetailAPIView.as_view()),
-    url(r'^user/(?P<gmail>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', APIviews_user.UserByEmailDetailAPIView.as_view()),
+    url(r'^user/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', APIviews_user.UserByEmailDetailAPIView.as_view()),
     url(r'^user/add/', APIviews_user.UserAddAPIView.as_view()),
     url(r'^username/exists/(?P<username>[^/]+)', APIviews_user.UserExistsAPIView.as_view()),
     url(r'email/exists/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})', APIviews_user.EmailExistsAPIView.as_view()),
@@ -86,7 +90,5 @@ urlpatterns = [
         APIviews_lenderloan.LenderLoansListViewSearchByEmail.as_view()), #not working #TODO: not implemented yet
 
 
-    url(r'^borrowerloans/borrower/(?P<borrower>[^/]+)/loans/', APIviews_borrowerloan.BorrowerLoansList.as_view()),
+    url(r'^borrowerloans/borrower/(?P<borrower>[^/]+)/loans/', APIviews_borrowerloan.BorrowerLoansList.as_view())
 ]
-
-
