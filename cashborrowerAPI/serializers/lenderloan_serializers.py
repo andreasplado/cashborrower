@@ -17,7 +17,7 @@ class LenderLoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields =('id','lender','borrower', 'amount','notes','loanAdded','deadline', 'isLoanPrivate', 'interest', 'interestInterval',
-                 'loanLikeCount', 'loanDislikeCount')
+                 'loanLikeCount', 'loanDislikeCount', 'imageProof')
 
 
 class AddLenderLoanSerializer(serializers.ModelSerializer):
