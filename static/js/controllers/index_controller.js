@@ -79,7 +79,7 @@ $(document).ready(function(){
         if(registerPasswordTxt != registerRepeatPasswordTxt && registerPasswordTxt != ""  && registerRepeatPasswordTxt != ""){
             toastr["error"]("Your passwords do not match!");
         }
-        if(usernameTxt != "" && passwordTxt !=""){
+        if(registerUsernameTxt!= "" && registerPasswordTxt !=""){
             data =  JSON.stringify({username : usernameTxt, password : passwordTxt })
             $.ajax({
                 type: "POST",
