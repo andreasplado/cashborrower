@@ -143,6 +143,7 @@ SECURE_SSL_REDIRECT = False # FORCING GO TO HTTPS SITE
 #Refers to the part of an url that we need to tell django about
 STATIC_URL =  '/static/'
 
+
 #change to server
 STATICFILES_DIRS = (
     (os.path.join(BASE_DIR, "static"),)
@@ -150,7 +151,7 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+STATIC_ROOT =os.path.join(BASE_DIR, "static")
 LOGIN_URL = '/'
 
 
