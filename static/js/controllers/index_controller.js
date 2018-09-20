@@ -24,8 +24,8 @@ $(document).ready(function(){
     });
 
     $("#btn_login").click(function(){
-        usernameTxt = $('#username').val();
-        passwordTxt = $('#password').val();
+        var usernameTxt = $('#username').val();
+        var passwordTxt = $('#password').val();
         if(usernameTxt == ""){
             toastr["error"]("Please enter your username!");
         }
@@ -59,10 +59,11 @@ $(document).ready(function(){
     });
 
     $("#btn_register").click(function(){
-        registerUsernameTxt = $('#register_username').val();
-        registerEmailTxt = $('#register_email').val();
-        registerPasswordTxt = $('#register_password').val();
-        registerRepeatPasswordTxt = $('#register_repeat_password').val();
+        var registerUsernameTxt = $('#register_username').val();
+        var registerEmailTxt = $('#register_email').val();
+        var registerPasswordTxt = $('#register_password').val();
+        var registerRepeatPasswordTxt = $('#register_repeat_password').val();
+
         if(registerUsernameTxt == ""){
             toastr["error"]("Please enter your username that you want to register!");
         }
