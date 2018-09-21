@@ -5,8 +5,8 @@ from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 
 
-def ViewRegister(View):
-    if View.request.method == 'POST':
+def ViewRegister(request):
+    if request.method == 'POST':
         form = UserCreationForm(request.POST)
 
         if form.is_valid():
