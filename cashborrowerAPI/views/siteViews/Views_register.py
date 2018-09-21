@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 
 
-def ViewRegister(request):
+def ViewRegister(request, onsuccess='/', onfail='/login/'):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
 
