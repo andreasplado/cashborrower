@@ -5,13 +5,13 @@ from cashborrowerAPI.views.siteViews.Views_register import user_exists, create_u
 from django.shortcuts import redirect, render_to_response
 from django.contrib.auth import authenticate, login
 
-def loginview(request):
+def view_login(request):
     c = {}
     c.update(csrf(request))
     return render_to_response('index.html', c)
 
 
-def auth_and_login(request, onsuccess='/', onfail='/login/'):
+def view_auth_and_login(request, onsuccess='/', onfail='/login/'):
     username = request.POST.get("username", None)
     password = request.POST.get("password", None)
     #print(' username: ' + username +' password: ' + password + 'request: '+ request)
@@ -25,11 +25,14 @@ def auth_and_login(request, onsuccess='/', onfail='/login/'):
     else:
         return redirect(onfail)
 
-def sign_up(request):
-    post = request.POST.get("email", None)
+def sign_up(request, onsuccess='/', onfail='/login/'):
+    username = request.POST.get("username", None);
+    email = request.POST.get("email", None)
+    password = request.POST.get("password", None);
+
     if not user_exists(post['email']):
-        user = create_user(username=post['username'], email=post['email'], password=post['password'])
-        return auth_and_login(request)
+        user = create_user(username=username, email=email, password=password)
+        return view_auth_and_login(request)
     else:
         return redirect("/")
 

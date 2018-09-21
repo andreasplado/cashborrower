@@ -20,8 +20,8 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 from cashborrowerAPI.views.siteViews.Views_login_required import ViewLoginRequired
 
-from cashborrowerAPI.views.siteViews.Views_register import ViewRegister
-from cashborrowerAPI.views.siteViews.Views_login import auth_and_login, loginview, sign_up
+from cashborrowerAPI.views.siteViews.Views_register import view_register
+from cashborrowerAPI.views.siteViews.Views_login import view_auth_and_login, view_login, sign_up
 from cashborrowerAPI.views.siteViews.Views_logout import logout
 from django.conf.urls.static import static
 
@@ -36,8 +36,8 @@ urlpatterns = [
     url(r'^$', ViewIndex), #secured
     url(r'^dashboard/$', ViewIndex),
 
-    url(r'^login/', loginview),
-    url(r'^auth/', auth_and_login),
+    url(r'^login/', view_login),
+    url(r'^auth/', view_auth_and_login),
     url(r'^signup/', sign_up),
     url(r'^logout/', logout),
 
