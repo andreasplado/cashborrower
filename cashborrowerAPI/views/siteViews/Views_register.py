@@ -32,4 +32,4 @@ def user_exists(username):
     return True
 
 def registration_complete(request):
-    return render_to_response('registration/registration_complete.html')
+    return render_to_response('templates/user_created_successfully.html')
