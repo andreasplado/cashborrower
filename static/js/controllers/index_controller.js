@@ -83,22 +83,20 @@ $(document).ready(function(){
             data =  JSON.stringify({username : registerUsernameTxt, password : registerPasswordTxt })
             $.ajax({
                 type: "POST",
-                url: "/api-token-auth/",
+                url: "/signup/",
                 data: data,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    toastr["success"]("You logged in successfully!");
+                    toastr["success"]("User registred successfully!");
                    //do something
                    //$(location).attr('href', '/dashboard')
                 },
                 error: function (errormessage) {
-                    toastr["error"]("Provided credentials are wrong!");
+                    toastr["error"]("Error: " + errormessage);
 
                 }
             });
         }
     });
-
-
 });
