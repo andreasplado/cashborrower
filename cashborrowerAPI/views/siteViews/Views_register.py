@@ -8,8 +8,10 @@ from django.template.context_processors import csrf
 def ViewRegister(View):
     if View.request.method == 'POST':
         form = UserCreationForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            form.save(commit = True)
+
             return HttpResponseRedirect('/accounts/register/complete')
         else:
             form = UserCreationForm()

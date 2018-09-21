@@ -4,6 +4,6 @@ from django.shortcuts import redirect
 from cashborrower import settings
 
 
-def ViewLogout(request):
+def logout(request):
     logout(request)
     return redirect(settings.LOGIN_URL)

@@ -21,8 +21,8 @@ from rest_framework.authtoken import views
 from cashborrowerAPI.views.siteViews.Views_login_required import ViewLoginRequired
 
 from cashborrowerAPI.views.siteViews.Views_register import ViewRegister
-from cashborrowerAPI.views.siteViews.Views_login import auth_and_login, loginview
-from cashborrowerAPI.views.siteViews.Views_logout import ViewLogout
+from cashborrowerAPI.views.siteViews.Views_login import auth_and_login, loginview, sign_up
+from cashborrowerAPI.views.siteViews.Views_logout import logout
 from django.conf.urls.static import static
 
 admin.autodiscover()
@@ -38,7 +38,7 @@ urlpatterns = [
 
     url(r'^login/', loginview),
     url(r'^auth/', auth_and_login),
-    url(r'^signup/', ViewRegister),
-    url(r'^logout/', ViewLogout),
+    url(r'^signup/', sign_up),
+    url(r'^logout/', logout),
 
 ]+ static(MEDIA_URL, document_root=MEDIA_ROOT)

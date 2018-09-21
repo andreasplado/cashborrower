@@ -41,7 +41,7 @@
     <form  action="/signup/" method="post" >  {% csrf_token %}
     <div>
         <div class="form-group">
-            <input class="form-control" name="email" id="register_username" placeholder="Username"/>
+            <input class="form-control" name="username" id="register_username" placeholder="Username"/>
         </div>
         <div class="form-group">
             <input type="email" class="form-control" name="email" id="register_email" placeholder="Email"/>
@@ -51,10 +51,10 @@
                 <input type="password" class="form-control" name="password" id="register_password" placeholder="Password" />
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" id="register_repeat_password" placeholder="Password again" />
+                <input type="password" class="form-control" name="password-repeat" id="register_repeat_password" placeholder="Password again" />
             </div>
             <div style="float:right;" class="form-group">
-                <button type="button" class="btn btn-default" id="btn_register">Sign up</button>
+                <button type="submit" class="btn btn-default" id="btn_register">Sign up</button>
             </div>
         </div>
     </div>

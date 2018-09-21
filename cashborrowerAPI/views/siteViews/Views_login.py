@@ -25,10 +25,10 @@ def auth_and_login(request, onsuccess='/', onfail='/login/'):
     else:
         return redirect(onfail)
 
-def sign_up_in(request):
-    post = request.POST
+def sign_up(request):
+    post = request.POST.get("email", None)
     if not user_exists(post['email']):
-        user = create_user(username=post['email'], email=post['email'], password=post['password'])
+        user = create_user(username=post['username'], email=post['email'], password=post['password'])
         return auth_and_login(request)
     else:
         return redirect("/")

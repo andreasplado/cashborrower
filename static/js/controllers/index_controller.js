@@ -94,7 +94,7 @@ $(document).ready(function(){
                 },
                 error: function (errormessage) {
                     toastr["error"]("Error: " + errormessage);
-                    console.log(errormessage);
+                    console.log(errormessage.responseText);
                 }
             });
         }
