@@ -10,11 +10,7 @@ After domain name you have specified urls which are described as endpoint url in
 So the site that has available endpoint admin for example you have this kind of url: <b>[domainame]/admin</b>
 This leads to the admin panel of that djangorestframework.
 
-### ERD
-<img src="http://phonewe.freeiz.com/cash.png" />
-
-#### Admin panel looks like this in this current program
-<img src="http://phonewe.freeiz.com/example_of_admin_panel.png">
+<img src="https://github.com/andreasplado/static_files/raw/master/cashborrower.png">
 
 #### Available endpoints:
 
@@ -70,7 +66,6 @@ You need to recive token from the user. Every registred user have unique token i
 Token will  be given to the header to get authorized access for the endpoint
 
 For unauthorized access of this kind of url [domain_name]/loanlikes/loan/18/likes/ you will not recive JSON about loan likes rather you recive message about unauthorized access and will also get HTTP 401 error - unauthorized
-<img src="http://phonewe.freeiz.com/loanlikelist.png"/>
 
 To get non-fancy palin JSON format of data from the endpoint you will add trailing slash ath the end of the url with an extra data:
  /?format=json
