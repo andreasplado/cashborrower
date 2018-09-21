@@ -30,7 +30,7 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
     email = request.POST.get("email", None)
     password = request.POST.get("password", None);
 
-    if not user_exists(post['email']):
+    if not user_exists(email):
         user = create_user(username=username, email=email, password=password)
         return view_auth_and_login(request)
     else:
