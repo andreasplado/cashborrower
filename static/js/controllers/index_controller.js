@@ -27,11 +27,11 @@ $(document).ready(function(){
         var usernameTxt = $('#username').val();
         var passwordTxt = $('#password').val();
         if(usernameTxt == ""){
-            setTimeout(function(){ toastr["error"]("Please enter your username!"); }, 3000);
+            setTimeout(function(){ toastr["error"]("Please enter your username!"); }, 6000);
 
         }
         if(passwordTxt == ""){
-            setTimeout(function(){ toastr["error"]("Please enter your password!"); }, 3000);
+            setTimeout(function(){ toastr["error"]("Please enter your password!"); }, 6000);
         }
         if(usernameTxt != "" && passwordTxt !=""){
             data =  JSON.stringify({username : usernameTxt, password : passwordTxt })
