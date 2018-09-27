@@ -1,7 +1,7 @@
 from django.template.context_processors import csrf
 from pip import logger
 
-from cashborrowerAPI.views.siteViews.Views_register import user_exists, create_user
+from cashborrowerAPI.views.siteViews.register import user_exists, create_user
 from django.shortcuts import redirect, render_to_response
 from django.contrib.auth import authenticate, login
 

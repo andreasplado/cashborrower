@@ -14,15 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from cashborrower.settings import MEDIA_URL, MEDIA_ROOT
-from cashborrowerAPI.views.siteViews.Views_index import ViewIndex
+from cashborrowerAPI.views.siteViews.index import ViewIndex
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.authtoken import views
-from cashborrowerAPI.views.siteViews.Views_login_required import ViewLoginRequired
+from cashborrowerAPI.views.siteViews.login_required import ViewLoginRequired
 
-from cashborrowerAPI.views.siteViews.Views_register import view_register
-from cashborrowerAPI.views.siteViews.Views_login import view_auth_and_login, view_login, sign_up
-from cashborrowerAPI.views.siteViews.Views_logout import logout
+from cashborrowerAPI.views.siteViews.register import view_register
+from cashborrowerAPI.views.siteViews.login import view_auth_and_login, view_login, sign_up
+from cashborrowerAPI.views.siteViews.logout import logout
 from django.conf.urls.static import static
 
 admin.autodiscover()
