@@ -11,6 +11,6 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
 
     if not user_exists(email):
         create_user(username=username, email=email, password=password)
-        return view_auth_and_login(request)
-    else:
         return redirect("/")
+    else:
+        return view_auth_and_login(request)

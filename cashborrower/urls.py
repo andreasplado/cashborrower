@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from cashborrower.settings import MEDIA_URL, MEDIA_ROOT
+from cashborrowerAPI.views.siteViews import sign_up
 from cashborrowerAPI.views.siteViews.index import ViewIndex
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -21,7 +22,7 @@ from rest_framework.authtoken import views
 from cashborrowerAPI.views.siteViews.login_required import ViewLoginRequired
 
 from cashborrowerAPI.views.siteViews.register import view_register
-from cashborrowerAPI.views.siteViews.login import view_auth_and_login, view_login, sign_up
+from cashborrowerAPI.views.siteViews.login import view_auth_and_login, view_login
 from cashborrowerAPI.views.siteViews.logout import logout, user_logout
 from django.conf.urls.static import static
 
