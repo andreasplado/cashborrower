@@ -22,7 +22,7 @@ from cashborrowerAPI.views.siteViews.login_required import ViewLoginRequired
 
 from cashborrowerAPI.views.siteViews.register import view_register
 from cashborrowerAPI.views.siteViews.login import view_auth_and_login, view_login, sign_up
-from cashborrowerAPI.views.siteViews.logout import logout
+from cashborrowerAPI.views.siteViews.logout import logout, user_logout
 from django.conf.urls.static import static
 
 admin.autodiscover()
@@ -39,6 +39,6 @@ urlpatterns = [
     url(r'^login/', view_login),
     url(r'^auth/', view_auth_and_login),
     url(r'^signup/', sign_up),
-    url(r'^logout/', logout),
+    url(r'^logout/', user_logout),
 
 ]+ static(MEDIA_URL, document_root=MEDIA_ROOT)
