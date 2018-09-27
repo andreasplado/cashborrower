@@ -30,10 +30,6 @@ urlpatterns = [
     url(r'^user/addvote/', user.UserAddVoteAPIView.as_view()),
     url(r'^user/update/(?P<id>[0-9]+)', user.UserUpdateAPIView.as_view()),
     url(r'^user/delete/(?P<id>[0-9]+)', user.UserDeleteAPIView.as_view()),
-    # ACTIVATE USER#
-    url(r'^account_activation_sent/$', account_activation_sent, name='account_activation_sent'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        activate, name='activate'),
 
     # PUBLIC LOANS #
     url(r'^publicloans/', public_loan.PublicLoanListView.as_view()),
