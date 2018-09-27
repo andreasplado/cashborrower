@@ -3,3 +3,4 @@ noortemaja/*.pyc
 db.sqlite3
 .idea/
 .vscode
+venv

@@ -15,11 +15,7 @@ from cashborrowerAPI.views.APIviews import(
 
 )
 from cashborrowerAPI.views.APIviews import APIviews_loandislike
-from django.conf.urls import (
-handler400, handler403, handler404, handler500
-)
-from django.conf.urls.static import static
-from django.conf import settings
+from cashborrowerAPI.views.siteViews.Views_register import account_activation_sent, activate
 
 admin.autodiscover()
 urlpatterns = [
@@ -34,6 +30,10 @@ urlpatterns = [
     url(r'^user/addvote/', APIviews_user.UserAddVoteAPIView.as_view()),
     url(r'^user/update/(?P<id>[0-9]+)', APIviews_user.UserUpdateAPIView.as_view()),
     url(r'^user/delete/(?P<id>[0-9]+)', APIviews_user.UserDeleteAPIView.as_view()),
+    # ACTIVATE USER#
+    url(r'^account_activation_sent/$', account_activation_sent, name='account_activation_sent'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        activate, name='activate'),
 
     # PUBLIC LOANS #
     url(r'^publicloans/', APIviews_public_loan.PublicLoanListView.as_view()),
