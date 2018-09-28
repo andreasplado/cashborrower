@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.template.context_processors import csrf
 
+from cashborrowerAPI.views.siteViews.login import view_auth_and_login
 from cashborrowerAPI.views.siteViews.register import user_exists, create_user
 
 
@@ -12,6 +13,6 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
     c.update(csrf(request))
     if not user_exists(username):
         create_user(username=username, email=email, password=password)
-        return redirect("/", c)
+        return view_auth_and_login
     else:
         return redirect("/login/", c)
