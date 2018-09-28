@@ -13,6 +13,6 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
     c.update(csrf(request))
     if not user_exists(username):
         create_user(username=username, email=email, password=password)
-        return redirect("/", c)
+        return redirect("/")
     else:
-        return redirect("/login/", c)
+        return redirect("/login/")
