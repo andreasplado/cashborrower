@@ -39,7 +39,6 @@ urlpatterns = [
 
     url(r'^login/', view_login),
     url(r'^auth/', view_auth_and_login),
-    url(r'^signup/', sign_up),
     url(r'^logout/', user_logout),
 
 ]+ static(MEDIA_URL, document_root=MEDIA_ROOT)
