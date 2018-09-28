@@ -12,4 +12,4 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
         create_user(username=username, email=email, password=password)
         return redirect("/")
     else:
-        return redirect(onfail)
+        return redirect("/login/")
