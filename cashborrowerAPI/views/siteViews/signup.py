@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 from django.template.context_processors import csrf
 
-from cashborrowerAPI.views.siteViews.login import view_auth_and_login
 from cashborrowerAPI.views.siteViews.register import user_exists, create_user
 
 
