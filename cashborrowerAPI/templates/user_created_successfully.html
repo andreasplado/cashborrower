@@ -1,16 +1,53 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block head %}<script type="text/javascript" src="{% static "site/js/controllers/registration_form_controller.js" %}"></script> {% endblock %}
+{% block head %}<script type="text/javascript" src="{% static 'js/controllers/index_controller.js' %}"></script> {% endblock %}
 {% block title %}Cashborrower{% endblock %}
-
-{% block content %}
-<h1>Register</h1>
-    </br>
-    </br>
-    <div class="form-group" style="color: white;">
-        <h1>User created successfully</h1>
-        <a>Now you can log in</a>
+{% block header %}
+    {% load staticfiles %}
+    <img src="{% static 'images/mountains.jpg' %}" alt="Mountains">
+    <div class="name fancy-font">
+        Cashborrower
     </div>
+    <div class="titles">
+        <h1><span>CashBorrower</span></h1>
+        <h2> Money lending system </h2>
+    </div>
+    {{ title }}
+    {% load static %}
+    <form class="login-widgets" action="/auth/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <div class="col-sm-2" style="float: right;">
+            </br>
+            <div class="form-group" style="color: white;">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="form-group" style="color: white;">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group" style="float: right;">
+                <button type="submit" class="btn btn-default" id="btn_login">Log in</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<div style="bottom:30px;padding-left: 100px;
+    padding-right: 100px;">
+    <h3>Sign up!</h3>
+    <p>User created successfully. Now you can log in</p>
+
+</div>
+<br>
+<br>
+<div>
+    <h4>Try android version now</h4>
+    <p class="about-text">Attention! CashBorrower is not responsible for debts that remain unpaid. Application usage is based on the mutal trust.The benefits of this application remain only if you actually get the debts paid.</p>
+    <a class="contact-now-btn" href="#">Download from google play</a>
+</div>
+
 
 {% endblock %}
