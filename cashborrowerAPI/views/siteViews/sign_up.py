@@ -9,8 +9,5 @@ def sign_up(request, onsuccess='/', onfail='/login/'):
     email = request.POST.get("email", None)
     password = request.POST.get("password", None);
 
-    if not user_exists(email):
-        create_user(username=username, email=email, password=password)
-        return redirect("/")
-    else:
-        return view_auth_and_login(request)
+    create_user(username=username, email=email, password=password)
+    return redirect("/")
