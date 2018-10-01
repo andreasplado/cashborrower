@@ -6952,7 +6952,7 @@ footer .contact-now-btn:hover {
 .background{
     width: 2500px;
     height: 757px;
-    background: url('{% static 'images/mountains.jpg' %}');
+    background: url('../images/mountains.jpg');
 	background-repeat: repeat-x;
     z-index:-2;
 	animation: animatedBackground 13s linear infinite;
