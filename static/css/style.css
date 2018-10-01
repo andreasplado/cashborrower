@@ -6948,6 +6948,19 @@ footer .contact-now-btn:hover {
 	to { transform: translateX(100%); }
 }
 
+@keyframes color-me-in {
+  0% {
+    background: orange;
+  }
+  /* Adding a step in the middle */
+  50% {
+    background: blue;
+  }
+  100% {
+    background: black;
+  }
+}
+
 .background{
     background-position: 0px 0px;
 	background-repeat: repeat-x;
@@ -6959,6 +6972,7 @@ footer .contact-now-btn:hover {
     width: 100%;
     height: 100%;
     background-color:rgba(0, 0, 0, 0.5);
+    animation: color-me-in 13s;
 }
 
 
