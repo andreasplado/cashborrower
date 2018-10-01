@@ -6944,9 +6944,9 @@ footer .contact-now-btn:hover {
 }
 
 @keyframes animatedBackground {
-    100% {
-        transform: translateX(-66.6666%);
-    }
+	from { transform: translateX(0); }
+	to { transform: translateX(100%); }
+  }
 }
 
 @keyframes color-me-in {
@@ -6962,6 +6962,7 @@ footer .contact-now-btn:hover {
     background-position: 0px 0px;
 	background-repeat: repeat-x;
     position:absolute;z-index:-2;
+    background: url(/static/images/mountains.jpg);
 	animation: animatedBackground 13s linear infinite;
 }
 
