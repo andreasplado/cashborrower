@@ -6950,9 +6950,9 @@ footer .contact-now-btn:hover {
 
 
 .background{
-    width: 5000px;
-    height: 1514px;
-    background-image: "/static/images/mountains.jpg";
+    width: 2500px;
+    height: 757px;
+    background-image: "../images/mountains.jpg";
 	background-repeat: repeat-x;
     z-index:-2;
 	animation: animatedBackground 13s linear infinite;
