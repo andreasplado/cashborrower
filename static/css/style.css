@@ -6955,3 +6955,14 @@ footer .contact-now-btn:hover {
   0%    { left: 0; }
   100%  { left: -200%; }
 }
+.text-block {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+    padding-left: 0px;
+    padding-right: 0px;
+}
