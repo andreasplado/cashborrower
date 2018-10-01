@@ -6949,7 +6949,7 @@ footer .contact-now-btn:hover {
 }
 
 .background{
-    background-image: {% static 'images/mountains.jpg' %};
+    background-image: "/static/images/mountains.jpg";
     background-position: 0px 0px;
 	background-repeat: repeat-x;
     position:absolute;
