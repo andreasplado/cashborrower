@@ -6948,18 +6948,12 @@ footer .contact-now-btn:hover {
 	to { transform: translateX(100%); }
 }
 
-@keyframes slideleft {
-  from { background-position: 0%; }
-  to { background-position: 90000%; }
-}
-
 
 .background{
     background-image: "/static/images/mountains.jpg";
 	background-repeat: repeat-x;
-    position:absolute;
     z-index:-2;
-	animation: slideleft 13s linear infinite;
+	animation: animatedBackground 13s linear infinite;
 }
 
 .background-block {
