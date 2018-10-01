@@ -6951,7 +6951,8 @@ footer .contact-now-btn:hover {
 .background{
     background-position: 0px 0px;
 	background-repeat: repeat-x;
-    position:absolute;z-index:-2;
+    position:absolute;
+    z-index:-2;
 	animation: animatedBackground 13s linear infinite;
 }
 
