@@ -6948,13 +6948,10 @@ footer .contact-now-btn:hover {
 	to { transform: translateX(100%); }
 }
 
-
 .background{
-    width: 2500px;
-    height: 757px;
-    background: url('../images/mountains.jpg');
+    background-position: 0px 0px;
 	background-repeat: repeat-x;
-    z-index:-2;
+    position:absolute;z-index:-2;
 	animation: animatedBackground 13s linear infinite;
 }
 
@@ -6963,4 +6960,5 @@ footer .contact-now-btn:hover {
     height: 100%;
     background-color:rgba(0, 0, 0, 0.5);
 }
+
 
