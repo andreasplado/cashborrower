@@ -6960,3 +6960,18 @@ footer .contact-now-btn:hover {
     height: 100%;
     background-color:rgba(0, 0, 0, 0.5);
 }
+
+.background {
+    background-repeat: repeat-x;
+    animation: slideleft 600s infinite linear;
+}
+
+@keyframes slideleft {
+  from { background-position: 0%; }
+  to { background-position: 90000%; }
+}
+
+@keyframes slideleft {
+  from { background-position: 0%; }
+  to { background-position: 90000%; }
+}
