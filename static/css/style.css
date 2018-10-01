@@ -6949,8 +6949,6 @@ footer .contact-now-btn:hover {
 }
 
 .background{
-    width : 5000px;
-    height: 1514px;
     background-image: {% static 'images/mountains.jpg' %};
     background-position: 0px 0px;
 	background-repeat: repeat-x;
