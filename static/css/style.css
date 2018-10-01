@@ -6950,14 +6950,10 @@ footer .contact-now-btn:hover {
 
 @keyframes color-me-in {
   0% {
-    background: orange;
-  }
-  /* Adding a step in the middle */
-  50% {
-    background: blue;
+    background-color:rgba(0, 0, 0, 0.9);
   }
   100% {
-    background: black;
+    background-color:rgba(0, 0, 0, 0.5);
   }
 }
 
