@@ -6958,15 +6958,6 @@ footer .contact-now-btn:hover {
   }
 }
 
-.background{
-    background-position: 0px 0px;
-	background-repeat: repeat-x;
-    position:absolute;z-index:-2;
-    background-image:url('../images/mountains.jpg');
-    background-size: 2500px 757px;
-	animation: animatedBackground 13s linear infinite;
-}
-
 .background-block {
     width: 100%;
     height: 100%;
