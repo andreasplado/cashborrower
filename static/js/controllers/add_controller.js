@@ -147,49 +147,8 @@ function validateData(username){
 
 
 function addLoanItem(isFirstItem){
-
-    if(isFirstItem){
-        $("#content").append(''
-            + '<div class="row loan-row-'+ loanCounter +'">'
-                +'<div class="col-xs-7">'
-                    + '<input type="text" class="form-control" id="loan-reason-'+ loanCounter +'" placeholder="Loan reason">'
-                + '</div>'
-                + '<div class="col-xs-2">'
-                    + '<input type="text" class="form-control" id="sum" placeholder="Sum">'
-                + '</div>'
-                + '</div>');
-            $("#remove-loan-btn-layout").append('<button type="button" class="btn btn-default" id="btn-remove-loan-item" data-toggle="modal">-</button>');
-        $('#myModal').modal('hide');
-    }else{
-        $("#content").append(''
-            + '<div class="row loan-row-'+ loanCounter +'">'
-                +'<div class="col-xs-7">'
-                    + '<input type="text" class="form-control" id="loan-reason-'+ loanCounter +'" placeholder="Loan reason">'
-                + '</div>'
-                + '<div class="col-xs-2">'
-                    + '<input type="text" class="form-control" id="sum" placeholder="Sum">'
-                + '</div>'
-                + '</div>');
-    }
-    $("#btn-remove-loan-item").click(function(){
-        if(loanCounter > 0){
-            loanCounter--;
-            console.log("Removing");
-
-            $(".row loan-row-"+ loanCounter).remove();
-
-        }
-        if(loanCounter == 0){
-            $("#btn-remove-loan-item").remove();
-        }
-    });
+    alert('Loan item added');
 }
-
-function removeLoanItem(){
-}
-
-
-
 
 function postDataToPythonServer(){
     $.ajax({
