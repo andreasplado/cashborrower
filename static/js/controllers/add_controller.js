@@ -51,17 +51,8 @@ function addLoanClicks(){
 
     $("#btn-add-loan-item").click(function(){
         // if there are more loans than 0
-        if(loanCounter > 0){
-            //Dont show alertbox
-            $("#btn-add-loan-item").removeAttr( "data-target" );
-            loanCounter++;
             addLoanItem(false);
 
-        }else{
-            //Show alert box
-            $("#btn-add-loan-item").attr( "data-target", "#myModal" );
-            loanCounter++;
-        }
     });
 
 }

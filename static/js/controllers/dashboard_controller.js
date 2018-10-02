@@ -120,7 +120,7 @@ function getGivenLoans (isinitialized) {
                     if(data.results[i].interest != 0){
                         $(".content").append(''
                         + '<b class="lbl-intrest">Intress:</b> ' + data.results[i].interest + ' '+ data.results[i].interestInterval +'</div>')
-                    }
+                    }+</button>
                     $("#content").append(''
                     + '<button type="button" class="btn btn-default" id="btn-trust">Trust</button>'
                     + '<button type="button" class="btn btn-default" id="btn-distrust">Distrust</button>');
