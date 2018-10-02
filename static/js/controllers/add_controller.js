@@ -81,6 +81,7 @@ function addLoan(){
                 + '<div class="checkbox">'
                     + '<label style="float:left;"><input type="checkbox" value="" id="cb-is-public">Public(seen by everybody)</label>'
                 + '</div>'
+                + '<input type="text" name="username" class="form-control" placeholder="Loan reason"></br>'
                 + '<button type="button" class="btn btn-default" id="btn-intrest" style="width: 100%;">INTEREST</button>'
                 + '<div id="intrest-layout" style="display:none;">'
                     + '<select class="form-control" id="intrest-interval">'
